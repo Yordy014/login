@@ -8,7 +8,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.grey.shade50,
           appBar: AppBar(
             centerTitle: true,
             elevation: 0,

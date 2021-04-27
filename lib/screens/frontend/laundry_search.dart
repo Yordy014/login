@@ -10,7 +10,7 @@ class _LaundrySearchState extends State<LaundrySearch> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade50,
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
@@ -18,14 +18,14 @@ class _LaundrySearchState extends State<LaundrySearch> {
             'Home',
             style: TextStyle(color: Colors.black, fontSize: 25),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.grey.shade50,
         ),
         body: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
                 Text('This is the'),
-                Text('home scree you see'),
+                Text('home screen you see'),
                 Text('when you get'),
                 Text('into the app'),
               ],

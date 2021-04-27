@@ -14,7 +14,7 @@ class _OrdersState extends State<Orders> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade50,
 
         body: Scrollbar(
             child: CustomScrollView(
@@ -58,18 +58,25 @@ class _OrdersState extends State<Orders> {
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   return Container(
-                    // color: index.isOdd ? Colors.white : Colors.black12,
-                    // height: 100.0,
+                    margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
                     child: Center(
                       child: Stack(children: [
                         ListTile(
+                          isThreeLine: true,
                           title: Text('${index + 1} item of the list'),
-                          subtitle: Text('Press here to check order'),
+                          subtitle: Column(
+                            children: [
+                              Text('Press here to check order'),
+                              Text('Press here to check order'),
+                              Text('Press here to check order'),
+                              Text('Press here to check order')
+                            ],
+                          ),
                           trailing: Icon(Icons.arrow_forward_ios),
                           leading: Icon(Icons.pan_tool_outlined),
                           onTap: () {},
                         ),
-                        buildDivider()
+                        // buildDivider()
                       ]),
                     ),
                   );
