@@ -20,7 +20,18 @@ class _LaundrySearchState extends State<LaundrySearch> {
           ),
           backgroundColor: Colors.white,
         ),
-        body: SingleChildScrollView(),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                Text('This is the'),
+                Text('home scree you see'),
+                Text('when you get'),
+                Text('into the app'),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
