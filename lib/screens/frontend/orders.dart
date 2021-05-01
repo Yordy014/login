@@ -1,5 +1,6 @@
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:login/widgets/widgets.dart';
+// import 'package:login/widgets/widgets.dart';
 
 class Orders extends StatefulWidget {
   @override
@@ -15,7 +16,6 @@ class _OrdersState extends State<Orders> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade50,
-
         body: Scrollbar(
             child: CustomScrollView(
           slivers: [
@@ -23,8 +23,9 @@ class _OrdersState extends State<Orders> {
               pinned: true,
               floating: false,
               snap: false,
-              expandedHeight: 250,
+              expandedHeight: MediaQuery.of(context).size.height * 0.5,
               backgroundColor: bottomBar,
+
               // elevation: 0,
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
@@ -67,9 +68,10 @@ class _OrdersState extends State<Orders> {
                           subtitle: Column(
                             children: [
                               Text('Press here to check order'),
-                              Text('Press here to check order'),
-                              Text('Press here to check order'),
-                              Text('Press here to check order')
+                              Text('If You are interested to'),
+                              Text('see how Your clothes'),
+                              Text('are going'),
+                              Text('Thank You!')
                             ],
                           ),
                           trailing: Icon(Icons.arrow_forward_ios),
@@ -86,47 +88,15 @@ class _OrdersState extends State<Orders> {
             ),
           ],
         )),
-
         floatingActionButton: FloatingActionButton(
           backgroundColor: floatingButton,
           elevation: 10,
-          child: Icon(Icons.add),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
           onPressed: () {},
         ),
-
-        // appBar: AppBar(
-        //   centerTitle: true,
-        //   elevation: 0,
-        //   title: Text(
-        //     'My Orders',
-        //     style: TextStyle(color: Colors.black, fontSize: 25),
-        //   ),
-        //   backgroundColor: Colors.white,
-        // ),
-        // body: Scrollbar(
-        //     child: itemCount > 0
-        //         ? ListView.builder(
-        //             itemCount: itemCount,
-        //             itemBuilder: (BuildContext context, int index) {
-        //               return Card(
-        //                 elevation: 3,
-        //                 margin: const EdgeInsets.fromLTRB(15, 10, 10, 15),
-        //                 child: Column(
-        //                   children: [
-        //                     ListTile(
-        //                       title: Text('${index + 1} item of the list'),
-        //                       subtitle: Text('Press here to check order'),
-        //                       trailing: Icon(Icons.arrow_forward_ios),
-        //                       leading: Icon(Icons.pan_tool_outlined),
-        //                     ),
-        //                   ],
-        //                 ),
-        //               );
-        //             })
-        //         : Center(
-        //             child: const Text('No items'),
-        //         )
-        // )
       ),
     );
   }
