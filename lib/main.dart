@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
             textSelectionTheme:
                 TextSelectionThemeData(cursorColor: floatingButton),
