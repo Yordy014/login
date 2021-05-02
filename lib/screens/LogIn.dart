@@ -1,17 +1,25 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:login/api/services/lavapp_backend.dart';
 import 'package:login/screens/frontend/home.dart';
+import 'package:provider/provider.dart';
 import 'SignUp.dart';
 
-class LogIn extends StatelessWidget {
+class LogIn extends StatefulWidget {
   static const Color bottomBar = Color(0xfff2b3b6);
   static const Color floatingButton = Color(0xffe38b90);
   static const Color darker = Color(0xffc2343d);
+
+  @override
+  _LogInState createState() => _LogInState();
+}
+
+class _LogInState extends State<LogIn> {
+  final scaffoldkey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
-
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -57,26 +65,33 @@ class LogIn extends StatelessWidget {
                       child: Container(
                         color: Colors.white,
                         child: TextFormField(
-                          style: TextStyle(color: darker),
+                          style: TextStyle(color: LogIn.darker),
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               labelText: 'Username',
                               prefixIcon: Icon(Icons.person_outline),
                               labelStyle: TextStyle(fontSize: 15)),
+                          onChanged: (value) {
+                            Provider.of<UserServices>(context, listen: false)
+                                .setEmail = value;
+                          },
                         ),
                       ),
                     ),
                     Container(
                       color: Colors.white10,
                       child: TextFormField(
-                        obscureText: true,
-                        style: TextStyle(color: darker),
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            labelText: 'Password',
-                            prefixIcon: Icon(Icons.lock_outline),
-                            labelStyle: TextStyle(fontSize: 15)),
-                      ),
+                          obscureText: true,
+                          style: TextStyle(color: LogIn.darker),
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              labelText: 'Password',
+                              prefixIcon: Icon(Icons.lock_outline),
+                              labelStyle: TextStyle(fontSize: 15)),
+                          onChanged: (value) {
+                            Provider.of<UserServices>(context, listen: false)
+                                .setPassword = value;
+                          }),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 10),
@@ -102,18 +117,40 @@ class LogIn extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 40),
                       child: MaterialButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Home()));
+                          onPressed: () async {
+
+                            final getemail = Provider.of<UserServices>(context,
+                                    listen: false)
+                                .getEmail;
+                            final getpassword = Provider.of<UserServices>(
+                                    context,
+                                    listen: false)
+                                .getPassword;
+                            final res = await Provider.of<UserServices>(context,
+                                    listen: false)
+                                .getLogin(getemail, getpassword);
+                            setState(() {});
+                            if (res['ok'] == true) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Home()));
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                backgroundColor: LogIn.darker,
+                                content:
+                                    Text('Usuario y/o Contraseña incorrectas',style: TextStyle(fontSize: 14), textAlign: TextAlign.center,),
+                                duration: Duration(milliseconds: 1500),
+                              ));
+                            }
                           },
                           child: Text(
                             'Sign In',
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           ),
-                          color: floatingButton,
+                          color: LogIn.floatingButton,
                           // elevation: 10,
                           minWidth: 300,
                           height: 50,
@@ -132,8 +169,8 @@ class LogIn extends StatelessWidget {
                                 fontSize: 15, color: Colors.grey.shade700)),
                         TextSpan(
                             text: '  Sign Up',
-                            style:
-                                TextStyle(color: floatingButton, fontSize: 15),
+                            style: TextStyle(
+                                color: LogIn.floatingButton, fontSize: 15),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 Navigator.push(

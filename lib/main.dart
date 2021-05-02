@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login/screens/LogIn.dart';
+import 'package:provider/provider.dart';
+
+import 'api/services/lavapp_backend.dart';
 // import 'package:login/screens/SignUp.dart';
 // import 'package:login/challenges/rectangle_animation_page.dart';
 // import 'package:login/screens/animations.dart';
@@ -17,17 +20,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            textSelectionTheme:
-                TextSelectionThemeData(cursorColor: floatingButton),
-            primaryColorLight: bottomBar,
-            primaryColorDark: darker,
-            primaryColor: floatingButton,
-            accentColor: floatingButton),
-        // darkTheme: ,
-        home: LogIn());
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UserServices(),
+        )
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+              textSelectionTheme:
+                  TextSelectionThemeData(cursorColor: floatingButton),
+              primaryColorLight: bottomBar,
+              primaryColorDark: darker,
+              primaryColor: floatingButton,
+              accentColor: floatingButton),
+          // darkTheme: ,
+          home: LogIn()),
+    );
     // home: SignUp());
     // return MaterialApp(home: SignUp());
   }
