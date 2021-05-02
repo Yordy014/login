@@ -1,9 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:login/screens/frontend/profile_settings.dart';
 import 'package:login/widgets/widgets.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
+  @override
+  _SettingsState createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,7 +22,7 @@ class Settings extends StatelessWidget {
               'Settings',
               style: TextStyle(color: Colors.black, fontSize: 25),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.grey.shade50,
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -43,7 +49,12 @@ class Settings extends StatelessWidget {
                             ),
                           ),
                           subtitle: Text('Profile Settings'),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfileSettings()));
+                          },
                           trailing: Icon(Icons.arrow_forward_ios),
                         ),
                       ),

@@ -57,7 +57,7 @@ class SignUp extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 15),
                         child: Text(
-                          'Sig Up',
+                          'Sign Up',
                           style: TextStyle(
                               fontSize: 25,
                               color: Colors.white,
@@ -72,17 +72,32 @@ class SignUp extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(23),
               child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                padding: EdgeInsets.fromLTRB(0, 30, 0, 10),
                 child: Container(
                   color: Colors.white,
                   child: TextFormField(
                     style: TextStyle(color: darker),
                     decoration: InputDecoration(
                         border: InputBorder.none,
-                        labelText: 'Username',
-                        prefixIcon: Icon(Icons.person_outline),
+                        labelText: 'E-mail',
+                        prefixIcon: Icon(Icons.email),
                         labelStyle: TextStyle(fontSize: 15)),
                   ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(23, 0, 23, 0),
+              child: Container(
+                color: Colors.white,
+                child: TextFormField(
+                  obscureText: true,
+                  style: TextStyle(color: darker),
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: 'Password',
+                      prefixIcon: Icon(Icons.lock_outline),
+                      labelStyle: TextStyle(fontSize: 15)),
                 ),
               ),
             ),

@@ -81,12 +81,23 @@ class LogIn extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 10),
                       child: Center(
-                        child: Text('Forgot your password?',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey)),
-                      ),
+                          child: RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: 'Forgot your password?',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => SignUp()));
+                                })
+                        ]),
+                      )),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 40),
