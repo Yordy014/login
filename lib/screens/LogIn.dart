@@ -118,7 +118,6 @@ class _LogInState extends State<LogIn> {
                       padding: EdgeInsets.only(top: 40),
                       child: MaterialButton(
                           onPressed: () async {
-
                             final getemail = Provider.of<UserServices>(context,
                                     listen: false)
                                 .getEmail;
@@ -139,8 +138,11 @@ class _LogInState extends State<LogIn> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 backgroundColor: LogIn.darker,
-                                content:
-                                    Text('Usuario y/o Contraseña incorrectas',style: TextStyle(fontSize: 14), textAlign: TextAlign.center,),
+                                content: Text(
+                                  'Usuario y/o Contraseña incorrectas',
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.center,
+                                ),
                                 duration: Duration(milliseconds: 1500),
                               ));
                             }

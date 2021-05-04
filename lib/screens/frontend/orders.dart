@@ -1,6 +1,6 @@
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// import 'package:login/widgets/widgets.dart';
+import 'package:login/widgets/widgets.dart';
 
 class Orders extends StatefulWidget {
   @override
@@ -78,7 +78,7 @@ class _OrdersState extends State<Orders> {
                           leading: Icon(Icons.pan_tool_outlined),
                           onTap: () {},
                         ),
-                        // buildDivider()
+                        buildDivider()
                       ]),
                     ),
                   );

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:login/screens/frontend/profile_settings.dart';
+import 'package:login/screens/frontend/security_settings.dart';
 import 'package:login/widgets/widgets.dart';
 
 class Settings extends StatefulWidget {
@@ -72,7 +73,12 @@ class _SettingsState extends State<Settings> {
                         title: Text('Security'),
                         leading: Icon(Icons.lock_outline),
                         trailing: Icon(Icons.arrow_forward_ios),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SecuritySettings()));
+                        },
                       ),
                       buildDivider(),
                       ListTile(
@@ -90,11 +96,38 @@ class _SettingsState extends State<Settings> {
                       ),
                       buildDivider(),
                       ListTile(
-                        title: Text('Language'),
-                        leading: Icon(Icons.language_outlined),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        onTap: () {},
-                      ),
+                          title: Text('Language'),
+                          leading: Icon(Icons.language_outlined),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          onTap: () {
+                            // Working on It, pop Up for language selection
+                            showDialog<void>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  int selectedRadio = 0;
+                                  return AlertDialog(
+                                    content: StatefulBuilder(
+                                      builder: (BuildContext context,
+                                          StateSetter setState) {
+                                        return Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: List<Widget>.generate(4,
+                                              (int index) {
+                                            return Radio<int>(
+                                              value: index,
+                                              groupValue: selectedRadio,
+                                              onChanged: (int value) {
+                                                setState(() =>
+                                                    selectedRadio = value);
+                                              },
+                                            );
+                                          }),
+                                        );
+                                      },
+                                    ),
+                                  );
+                                });
+                          })
                     ],
                   ),
                   margin: const EdgeInsets.all(30),
