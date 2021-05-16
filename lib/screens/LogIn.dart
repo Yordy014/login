@@ -117,25 +117,22 @@ class _LogInState extends State<LogIn> {
                     Padding(
                       padding: EdgeInsets.only(top: 40),
                       child: MaterialButton(
+                          
                           onPressed: () async {
-                            final getemail = Provider.of<UserServices>(context,
-                                    listen: false)
-                                .getEmail;
-                            final getpassword = Provider.of<UserServices>(
-                                    context,
-                                    listen: false)
-                                .getPassword;
+                            
+                            CircularProgressIndicator();
                             final res = await Provider.of<UserServices>(context,
                                     listen: false)
-                                .getLogin(getemail, getpassword);
-                            setState(() {});
+                                .getLogin();
+                            
+                          
                             if (res['ok'] == true) {
-                              Navigator.pushReplacement(
+                              return Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Home()));
                             } else {
-                              ScaffoldMessenger.of(context)
+                              return ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 backgroundColor: LogIn.darker,
                                 content: Text(
@@ -190,3 +187,5 @@ class _LogInState extends State<LogIn> {
     );
   }
 }
+
+

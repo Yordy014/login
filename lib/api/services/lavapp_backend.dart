@@ -23,15 +23,15 @@ class UserServices with ChangeNotifier {
     notifyListeners();
   }
 
-  getLogin(String email, password) async {
+  getLogin() async {
     final url = '$_urlApi/usuario/login';
-    final data = new Login(email: email, password: password);
+    final data = new Login(email: this._email, password: this._password);
     final req = await http.post(url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: loginToJson(data));
-    final res = jsonDecode(req.body);
+    final res = await jsonDecode(req.body);
     return res;
   }
 }
