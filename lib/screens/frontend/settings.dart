@@ -11,6 +11,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  static const Color bottomBar = Color(0xfff2b3b6);
+  static const Color floatingButton = Color(0xffe38b90);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -137,7 +139,8 @@ class _SettingsState extends State<Settings> {
                 ),
                 SwitchListTile(
                     value: true,
-                    activeColor: Colors.blue,
+                    activeColor: floatingButton,
+                    activeTrackColor: bottomBar,
                     contentPadding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                     title: Text(
                       'Receive Notifications',
@@ -146,7 +149,8 @@ class _SettingsState extends State<Settings> {
                     onChanged: (val) {}),
                 SwitchListTile(
                     value: false,
-                    activeColor: Colors.blue,
+                    activeColor: floatingButton,
+                    activeTrackColor: bottomBar,
                     contentPadding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                     title: Text('Dark Mode', style: TextStyle(fontSize: 17)),
                     onChanged: (val) {})

@@ -7,6 +7,7 @@ class ProfileSettings extends StatefulWidget {
 }
 
 class _ProfileSettingsState extends State<ProfileSettings> {
+  static const Color floatingButton = Color(0xffe38b90);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,44 +26,54 @@ class _ProfileSettingsState extends State<ProfileSettings> {
           child: Column(
             children: [
               Card(
+                elevation: 0,
+                color: Colors.grey.shade50,
+                child: Expanded(
+                  child: Image.network(
+                    'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
+                    height: 300,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                  ),
+                ),
+                margin: const EdgeInsets.all(30),
+              ),
+              Card(
+                margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                elevation: 3,
+                color: Colors.white,
                 child: Column(
                   children: [
                     ListTile(
+                      title: Text('Name + Last Name'),
+                      leading: Icon(Icons.person),
+                    ),
+                    ListTile(
+                      title: Text('Birth Date'),
+                      leading: Icon(Icons.cake),
+                    ),
+                    ListTile(
+                      title: Text('Phone Number'),
+                      leading: Icon(Icons.phone),
+                    ),
+                    ListTile(
                       title: Text('Address'),
                       leading: Icon(Icons.location_city),
-                      trailing: Icon(Icons.arrow_forward_ios),
-                      onTap: () {},
                     ),
-                    buildDivider(),
-                    // ListTile(
-                    //   title: Text('Themes'),
-                    //   leading: Icon(Icons.brush_outlined),
-                    //   trailing: Icon(Icons.arrow_forward_ios),
-                    //   onTap: () {},
-                    // ),
-                    // buildDivider(),
-                    // ListTile(
-                    //   title: Text('Credits'),
-                    //   leading: Icon(Icons.money),
-                    //   trailing: Icon(Icons.arrow_forward_ios),
-                    //   onTap: () {},
-                    // ),
-                    // buildDivider(),
-                    // ListTile(
-                    //   title: Text('Language'),
-                    //   leading: Icon(Icons.language_outlined),
-                    //   trailing: Icon(Icons.arrow_forward_ios),
-                    //   onTap: () {},
-                    // ),
                   ],
                 ),
-                margin: const EdgeInsets.all(30),
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-              ),
+              )
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: floatingButton,
+          elevation: 10,
+          tooltip: 'Edit profile information',
+          child: Icon(
+            Icons.edit,
+            color: Colors.white,
+          ),
+          onPressed: () {},
         ),
       ),
     );
