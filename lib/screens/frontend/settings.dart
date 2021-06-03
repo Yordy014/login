@@ -147,13 +147,6 @@ class _SettingsState extends State<Settings> {
                       style: TextStyle(fontSize: 17),
                     ),
                     onChanged: (val) {}),
-                SwitchListTile(
-                    value: false,
-                    activeColor: floatingButton,
-                    activeTrackColor: bottomBar,
-                    contentPadding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                    title: Text('Dark Mode', style: TextStyle(fontSize: 17)),
-                    onChanged: (val) {})
               ],
             ),
           )),
