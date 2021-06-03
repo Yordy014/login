@@ -38,6 +38,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 margin: const EdgeInsets.all(30),
               ),
               Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 elevation: 3,
                 color: Colors.white,
@@ -61,7 +63,35 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     ),
                   ],
                 ),
-              )
+              ),
+              Container(
+                // height: MediaQuery.of(context).size.height * 0.5,
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    Image.asset(
+                      'lib/assets/images/gear.png',
+                      color: const Color.fromRGBO(255, 255, 255, 0.15),
+                      colorBlendMode: BlendMode.modulate,
+                    ),
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            'Here You can change Your personal information.',
+                            style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontSize: 18,
+                                height: 10),
+                            overflow: TextOverflow.clip,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
