@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login/widgets/widgets.dart';
+// import 'package:login/widgets/widgets.dart';
 
 class ProfileSettings extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               Card(
                 elevation: 0,
                 color: Colors.grey.shade50,
-                child: Expanded(
+                child: Center(
                   child: Image.network(
                     'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
                     height: 300,

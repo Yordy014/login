@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:login/screens/frontend/profile_settings.dart';
-import 'package:login/screens/frontend/security_settings.dart';
+import 'package:login/screens/frontend/change_pass.dart';
 import 'package:login/widgets/widgets.dart';
 
 class Settings extends StatefulWidget {
@@ -72,14 +72,14 @@ class _SettingsState extends State<Settings> {
                   child: Column(
                     children: [
                       ListTile(
-                        title: Text('Security'),
-                        leading: Icon(Icons.lock_outline),
+                        title: Text('Change Password'),
+                        leading: Icon(Icons.vpn_key),
                         trailing: Icon(Icons.arrow_forward_ios),
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SecuritySettings()));
+                                  builder: (context) => ChangePassword()));
                         },
                       ),
                       buildDivider(),
