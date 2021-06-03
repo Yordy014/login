@@ -78,7 +78,32 @@ class _ChangePasswordState extends State<ChangePassword> {
                           height: 50,
                           textColor: Colors.white,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))))
+                              borderRadius: BorderRadius.circular(10)))),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        Image.asset(
+                          'lib/assets/images/gear.png',
+                          color: const Color.fromRGBO(255, 255, 255, 0.15),
+                          colorBlendMode: BlendMode.modulate,
+                        ),
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                "Here You can update Your old password into a new one, to do so, You input Your old password on the first box, then input Your new password twice in the next two boxes.",
+                                style: TextStyle(
+                                    color: Colors.grey.shade600, fontSize: 18),
+                                overflow: TextOverflow.clip,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

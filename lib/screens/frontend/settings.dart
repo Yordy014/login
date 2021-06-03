@@ -147,6 +147,32 @@ class _SettingsState extends State<Settings> {
                       style: TextStyle(fontSize: 17),
                     ),
                     onChanged: (val) {}),
+                Container(
+                  // height: MediaQuery.of(context).size.height * 0.5,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Image.asset(
+                        'lib/assets/images/gear.png',
+                        color: const Color.fromRGBO(255, 255, 255, 0.15),
+                        colorBlendMode: BlendMode.modulate,
+                      ),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              'Here You can change the settings of Your application.',
+                              style: TextStyle(
+                                  color: Colors.grey.shade600, fontSize: 18),
+                              overflow: TextOverflow.clip,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           )),
