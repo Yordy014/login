@@ -136,7 +136,7 @@ class _LogInState extends State<LogIn> {
                                   .showSnackBar(SnackBar(
                                 backgroundColor: LogIn.darker,
                                 content: Text(
-                                  'Usuario y/o Contraseña incorrectas',
+                                  'Wrong Username &/or Password',
                                   style: TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),

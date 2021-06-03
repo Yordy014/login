@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:login/screens/frontend/profile_settings.dart';
-import 'package:login/screens/frontend/security_settings.dart';
+import 'package:login/screens/frontend/change_pass.dart';
 import 'package:login/widgets/widgets.dart';
 
 class Settings extends StatefulWidget {
@@ -11,6 +11,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  static const Color bottomBar = Color(0xfff2b3b6);
+  static const Color floatingButton = Color(0xffe38b90);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -70,14 +72,14 @@ class _SettingsState extends State<Settings> {
                   child: Column(
                     children: [
                       ListTile(
-                        title: Text('Security'),
-                        leading: Icon(Icons.lock_outline),
+                        title: Text('Change Password'),
+                        leading: Icon(Icons.vpn_key),
                         trailing: Icon(Icons.arrow_forward_ios),
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SecuritySettings()));
+                                  builder: (context) => ChangePassword()));
                         },
                       ),
                       buildDivider(),
@@ -137,19 +139,14 @@ class _SettingsState extends State<Settings> {
                 ),
                 SwitchListTile(
                     value: true,
-                    activeColor: Colors.blue,
+                    activeColor: floatingButton,
+                    activeTrackColor: bottomBar,
                     contentPadding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                     title: Text(
                       'Receive Notifications',
                       style: TextStyle(fontSize: 17),
                     ),
                     onChanged: (val) {}),
-                SwitchListTile(
-                    value: false,
-                    activeColor: Colors.blue,
-                    contentPadding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                    title: Text('Dark Mode', style: TextStyle(fontSize: 17)),
-                    onChanged: (val) {})
               ],
             ),
           )),

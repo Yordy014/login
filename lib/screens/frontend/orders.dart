@@ -91,6 +91,7 @@ class _OrdersState extends State<Orders> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: floatingButton,
           elevation: 10,
+          tooltip: 'Create new order',
           child: Icon(
             Icons.add,
             color: Colors.white,
