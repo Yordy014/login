@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:login/api/services/lavapp_backend.dart';
 import 'package:login/screens/frontend/home.dart';
 import 'package:provider/provider.dart';
@@ -17,9 +18,12 @@ class LogIn extends StatefulWidget {
 
 class _LogInState extends State<LogIn> {
   final scaffoldkey = GlobalKey<ScaffoldState>();
+  // LoginModel resAccept = new LoginModel();
+  // ErrorModel resDenegate = new ErrorModel();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -72,7 +76,7 @@ class _LogInState extends State<LogIn> {
                               prefixIcon: Icon(Icons.person_outline),
                               labelStyle: TextStyle(fontSize: 15)),
                           onChanged: (value) {
-                            Provider.of<UserServices>(context, listen: false)
+                            Provider.of<ServicesApi>(context, listen: false)
                                 .setEmail = value;
                           },
                         ),
@@ -89,7 +93,7 @@ class _LogInState extends State<LogIn> {
                               prefixIcon: Icon(Icons.lock_outline),
                               labelStyle: TextStyle(fontSize: 15)),
                           onChanged: (value) {
-                            Provider.of<UserServices>(context, listen: false)
+                            Provider.of<ServicesApi>(context, listen: false)
                                 .setPassword = value;
                           }),
                     ),
@@ -117,16 +121,26 @@ class _LogInState extends State<LogIn> {
                     Padding(
                       padding: EdgeInsets.only(top: 40),
                       child: MaterialButton(
-                          
                           onPressed: () async {
-                            
-                            CircularProgressIndicator();
-                            final res = await Provider.of<UserServices>(context,
+                            final res = await Provider.of<ServicesApi>(context,
                                     listen: false)
-                                .getLogin();
-                            
-                          
-                            if (res['ok'] == true) {
+                                .setLogin();
+                            //El boton se esta precionando 2 veces
+                            // if (loading) {
+                            //   return ScaffoldMessenger.of(context)
+                            //       .showSnackBar(SnackBar(
+                            //     backgroundColor: Colors.grey,
+                            //     content: Text(
+                            //       'Loading...',
+                            //       style: TextStyle(fontSize: 14),
+                            //       textAlign: TextAlign.center,
+                            //     ),
+                            //     duration: Duration(milliseconds: 1500),
+                            //   ));
+                            // }
+                            //LOADING
+                            setState(() {});
+                            if (res == true) {
                               return Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
@@ -144,6 +158,7 @@ class _LogInState extends State<LogIn> {
                               ));
                             }
                           },
+                          // },
                           child: Text(
                             'Sign In',
                             style: TextStyle(
@@ -187,5 +202,3 @@ class _LogInState extends State<LogIn> {
     );
   }
 }
-
-

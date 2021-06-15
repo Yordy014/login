@@ -1,36 +1,43 @@
 // To parse this JSON data, do
 //
-//     final billdetail = billdetailFromJson(jsonString);
+//     final billDetailModel = billDetailModelFromJson(jsonString);
 
 import 'dart:convert';
 
-Billdetail billdetailFromJson(String str) =>
-    Billdetail.fromJson(json.decode(str));
+BillDetailModel billDetailModelFromJson(String str) =>
+    BillDetailModel.fromJson(json.decode(str));
 
-String billdetailToJson(Billdetail data) => json.encode(data.toJson());
+String billDetailModelToJson(BillDetailModel data) =>
+    json.encode(data.toJson());
 
-class Billdetail {
-  Billdetail({
+class BillDetailModel {
+  BillDetailModel({
     this.ok,
     this.data,
   });
 
   bool ok;
-  List<Datum> data;
+  List<DetailsBills> data;
 
-  factory Billdetail.fromJson(Map<String, dynamic> json) => Billdetail(
-        ok: json["ok"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+  factory BillDetailModel.fromJson(Map<String, dynamic> json) =>
+      BillDetailModel(
+        ok: json["ok"] == null ? null : json["ok"],
+        data: json["data"] == null
+            ? null
+            : List<DetailsBills>.from(
+                json["data"].map((x) => DetailsBills.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "ok": ok,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "ok": ok == null ? null : ok,
+        "data": data == null
+            ? null
+            : List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
-class Datum {
-  Datum({
+class DetailsBills {
+  DetailsBills({
     this.idBillDetail,
     this.idBill,
     this.idServiceType,
@@ -50,25 +57,36 @@ class Datum {
   DateTime lastUpdate;
   DateTime processingTime;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        idBillDetail: json["ID_BILL_DETAIL"],
-        idBill: json["ID_BILL"],
-        idServiceType: json["ID_SERVICE_TYPE"],
-        serviceTypePrice: json["SERVICE_TYPE_PRICE"],
-        idClotheType: json["ID_CLOTHE_TYPE"],
-        currentDept: json["CURRENT_DEPT"],
-        lastUpdate: DateTime.parse(json["LAST_UPDATE"]),
-        processingTime: DateTime.parse(json["PROCESSING_TIME"]),
+  factory DetailsBills.fromJson(Map<String, dynamic> json) => DetailsBills(
+        idBillDetail:
+            json["ID_BILL_DETAIL"] == null ? null : json["ID_BILL_DETAIL"],
+        idBill: json["ID_BILL"] == null ? null : json["ID_BILL"],
+        idServiceType:
+            json["ID_SERVICE_TYPE"] == null ? null : json["ID_SERVICE_TYPE"],
+        serviceTypePrice: json["SERVICE_TYPE_PRICE"] == null
+            ? null
+            : json["SERVICE_TYPE_PRICE"],
+        idClotheType:
+            json["ID_CLOTHE_TYPE"] == null ? null : json["ID_CLOTHE_TYPE"],
+        currentDept: json["CURRENT_DEPT"] == null ? null : json["CURRENT_DEPT"],
+        lastUpdate: json["LAST_UPDATE"] == null
+            ? null
+            : DateTime.parse(json["LAST_UPDATE"]),
+        processingTime: json["PROCESSING_TIME"] == null
+            ? null
+            : DateTime.parse(json["PROCESSING_TIME"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "ID_BILL_DETAIL": idBillDetail,
-        "ID_BILL": idBill,
-        "ID_SERVICE_TYPE": idServiceType,
-        "SERVICE_TYPE_PRICE": serviceTypePrice,
-        "ID_CLOTHE_TYPE": idClotheType,
-        "CURRENT_DEPT": currentDept,
-        "LAST_UPDATE": lastUpdate.toIso8601String(),
-        "PROCESSING_TIME": processingTime.toIso8601String(),
+        "ID_BILL_DETAIL": idBillDetail == null ? null : idBillDetail,
+        "ID_BILL": idBill == null ? null : idBill,
+        "ID_SERVICE_TYPE": idServiceType == null ? null : idServiceType,
+        "SERVICE_TYPE_PRICE":
+            serviceTypePrice == null ? null : serviceTypePrice,
+        "ID_CLOTHE_TYPE": idClotheType == null ? null : idClotheType,
+        "CURRENT_DEPT": currentDept == null ? null : currentDept,
+        "LAST_UPDATE": lastUpdate == null ? null : lastUpdate.toIso8601String(),
+        "PROCESSING_TIME":
+            processingTime == null ? null : processingTime.toIso8601String(),
       };
 }

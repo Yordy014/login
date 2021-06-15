@@ -15,21 +15,26 @@ class BillModel {
   });
 
   bool ok;
-  List<Datum> data;
+  List<BillItems> data;
 
   factory BillModel.fromJson(Map<String, dynamic> json) => BillModel(
-        ok: json["ok"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        ok: json["ok"] == null ? null : json["ok"],
+        data: json["data"] == null
+            ? null
+            : List<BillItems>.from(
+                json["data"].map((x) => BillItems.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "ok": ok,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "ok": ok == null ? null : ok,
+        "data": data == null
+            ? null
+            : List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
-class Datum {
-  Datum({
+class BillItems {
+  BillItems({
     this.idBill,
     this.customer,
     this.currentDate,
@@ -51,27 +56,33 @@ class Datum {
   bool active;
   dynamic employee;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        idBill: json["ID_BILL"],
-        customer: json["CUSTOMER"],
-        currentDate: DateTime.parse(json["CURRENT_DATE"]),
-        dateDeliver: DateTime.parse(json["DATE_DELIVER"]),
-        subTotal: json["SUB_TOTAL"],
-        discount: json["DISCOUNT"],
-        itbis: json["ITBIS"],
-        active: json["active"],
+  factory BillItems.fromJson(Map<String, dynamic> json) => BillItems(
+        idBill: json["ID_BILL"] == null ? null : json["ID_BILL"],
+        customer: json["CUSTOMER"] == null ? null : json["CUSTOMER"],
+        currentDate: json["CURRENT_DATE"] == null
+            ? null
+            : DateTime.parse(json["CURRENT_DATE"]),
+        dateDeliver: json["DATE_DELIVER"] == null
+            ? null
+            : DateTime.parse(json["DATE_DELIVER"]),
+        subTotal: json["SUB_TOTAL"] == null ? null : json["SUB_TOTAL"],
+        discount: json["DISCOUNT"] == null ? null : json["DISCOUNT"],
+        itbis: json["ITBIS"] == null ? null : json["ITBIS"],
+        active: json["active"] == null ? null : json["active"],
         employee: json["employee"],
       );
 
   Map<String, dynamic> toJson() => {
-        "ID_BILL": idBill,
-        "CUSTOMER": customer,
-        "CURRENT_DATE": currentDate.toIso8601String(),
-        "DATE_DELIVER": dateDeliver.toIso8601String(),
-        "SUB_TOTAL": subTotal,
-        "DISCOUNT": discount,
-        "ITBIS": itbis,
-        "active": active,
+        "ID_BILL": idBill == null ? null : idBill,
+        "CUSTOMER": customer == null ? null : customer,
+        "CURRENT_DATE":
+            currentDate == null ? null : currentDate.toIso8601String(),
+        "DATE_DELIVER":
+            dateDeliver == null ? null : dateDeliver.toIso8601String(),
+        "SUB_TOTAL": subTotal == null ? null : subTotal,
+        "DISCOUNT": discount == null ? null : discount,
+        "ITBIS": itbis == null ? null : itbis,
+        "active": active == null ? null : active,
         "employee": employee,
       };
 }
