@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:login/api/services/lavapp_backend.dart';
-import 'package:login/screens/frontend/home.dart';
+import 'package:login/screens/home.dart';
 import 'package:provider/provider.dart';
-import 'SignUp.dart';
+// import 'SignUp.dart';
 
 class LogIn extends StatefulWidget {
   static const Color bottomBar = Color(0xfff2b3b6);
@@ -23,7 +23,7 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
-
+    bool _isLoading = false;
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -72,7 +72,7 @@ class _LogInState extends State<LogIn> {
                           style: TextStyle(color: LogIn.darker),
                           decoration: InputDecoration(
                               border: InputBorder.none,
-                              labelText: 'Username',
+                              labelText: 'Nombre de Usuario',
                               prefixIcon: Icon(Icons.person_outline),
                               labelStyle: TextStyle(fontSize: 15)),
                           onChanged: (value) {
@@ -89,7 +89,7 @@ class _LogInState extends State<LogIn> {
                           style: TextStyle(color: LogIn.darker),
                           decoration: InputDecoration(
                               border: InputBorder.none,
-                              labelText: 'Password',
+                              labelText: 'Contraseña',
                               prefixIcon: Icon(Icons.lock_outline),
                               labelStyle: TextStyle(fontSize: 15)),
                           onChanged: (value) {
@@ -103,7 +103,7 @@ class _LogInState extends State<LogIn> {
                           child: RichText(
                         text: TextSpan(children: [
                           TextSpan(
-                              text: 'Forgot your password?',
+                              text: '',
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
@@ -122,25 +122,18 @@ class _LogInState extends State<LogIn> {
                       padding: EdgeInsets.only(top: 40),
                       child: MaterialButton(
                           onPressed: () async {
+                            _isLoading = true;
                             final res = await Provider.of<ServicesApi>(context,
                                     listen: false)
                                 .setLogin();
-                            //El boton se esta precionando 2 veces
-                            // if (loading) {
-                            //   return ScaffoldMessenger.of(context)
-                            //       .showSnackBar(SnackBar(
-                            //     backgroundColor: Colors.grey,
-                            //     content: Text(
-                            //       'Loading...',
-                            //       style: TextStyle(fontSize: 14),
-                            //       textAlign: TextAlign.center,
-                            //     ),
-                            //     duration: Duration(milliseconds: 1500),
-                            //   ));
-                            // }
-                            //LOADING
-                            setState(() {});
+                            setState(() {
+                              _isLoading = false;
+                            });
                             if (res == true) {
+                              Provider.of<ServicesApi>(context, listen: false)
+                                  .getOrders();
+                              Provider.of<ServicesApi>(context, listen: false)
+                                  .getSerciesClothe();
                               return Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
@@ -150,7 +143,7 @@ class _LogInState extends State<LogIn> {
                                   .showSnackBar(SnackBar(
                                 backgroundColor: LogIn.darker,
                                 content: Text(
-                                  'Wrong Username &/or Password',
+                                  'El usuario y/o la contraseña esta incorrectas',
                                   style: TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
@@ -160,7 +153,7 @@ class _LogInState extends State<LogIn> {
                           },
                           // },
                           child: Text(
-                            'Sign In',
+                            'Iniciar Sesión',
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           ),
@@ -178,24 +171,33 @@ class _LogInState extends State<LogIn> {
                           child: RichText(
                               text: TextSpan(children: [
                         TextSpan(
-                            text: "Don't have an account yet?",
+                            text: "Aun no tiene cuenta?",
                             style: TextStyle(
                                 fontSize: 15, color: Colors.grey.shade700)),
                         TextSpan(
-                            text: '  Sign Up',
-                            style: TextStyle(
-                                color: LogIn.floatingButton, fontSize: 15),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SignUp()));
-                              })
+                          text: '  Llame al 809-691-6094',
+                          style: TextStyle(
+                              color: LogIn.floatingButton, fontSize: 15),
+                          // recognizer: TapGestureRecognizer()
+                          //   ..onTap = () {
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => SignUp()));
+                          //   })
+                        )
                       ]))),
                     )
                   ])),
-            )
+            ),
+            _isLoading
+                ? Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : Container()
           ],
         ),
       ),

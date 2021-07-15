@@ -31,6 +31,8 @@ dependencies:
   provider: ^4.3.3
   http: ^0.12.2
   font_awesome_flutter: ^8.11.0
+  socket_io_client: ^1.0.1
+  # shared_preferences: ^2.0.6
 
 dev_dependencies:
   curved_navigation_bar: ^0.3.7
@@ -58,6 +60,10 @@ flutter:
     - lib/assets/images/my_orders.png
     - lib/assets/images/signin.png
     - lib/assets/images/gear.png
+    - lib/assets/images/no-image-placeholder.png
+
+    
+    - lib/assets/icons/right-arrow.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

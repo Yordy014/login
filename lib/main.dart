@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/screens/LogIn.dart';
 // import 'package:login/api/models/login.dart';
 // import 'package:login/screens/LogIn.dart';
 // import 'package:login/screens/testing/testing.dart';
@@ -8,7 +9,6 @@ import 'api/services/lavapp_backend.dart';
 // import 'package:login/screens/SignUp.dart';
 // import 'package:login/challenges/rectangle_animation_page.dart';
 // import 'package:login/screens/animations.dart';
-import 'package:login/screens/frontend/home.dart';
 // import 'package:login/screens/test_circular_progress.dart';
 // import 'package:login/screens/headers_page.dart';
 
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
               primaryColor: floatingButton,
               accentColor: floatingButton),
           // darkTheme: ,
-          home: Home()),
+          home: LogIn()),
     );
     // home: SignUp());
     // return MaterialApp(home: SignUp());

@@ -1,35 +1,36 @@
 // To parse this JSON data, do
 //
-//     final clothe = clotheFromJson(jsonString);
+//     final clotheModel = clotheModelFromJson(jsonString);
 
 import 'dart:convert';
 
-Clothe clotheFromJson(String str) => Clothe.fromJson(json.decode(str));
+ClotheModel clotheModelFromJson(String str) =>
+    ClotheModel.fromJson(json.decode(str));
 
-String clotheToJson(Clothe data) => json.encode(data.toJson());
+String clotheModelToJson(ClotheModel data) => json.encode(data.toJson());
 
-class Clothe {
-  Clothe({
+class ClotheModel {
+  ClotheModel({
     this.ok,
     this.data,
   });
 
   bool ok;
-  List<Datum> data;
+  Data data;
 
-  factory Clothe.fromJson(Map<String, dynamic> json) => Clothe(
-        ok: json["ok"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+  factory ClotheModel.fromJson(Map<String, dynamic> json) => ClotheModel(
+        ok: json["ok"] == null ? null : json["ok"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "ok": ok,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "ok": ok == null ? null : ok,
+        "data": data == null ? null : data.toJson(),
       };
 }
 
-class Datum {
-  Datum({
+class Data {
+  Data({
     this.idClotheType,
     this.clotheType,
     this.notes,
@@ -41,17 +42,18 @@ class Datum {
   String notes;
   bool active;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        idClotheType: json["ID_CLOTHE_TYPE"],
-        clotheType: json["CLOTHE_TYPE"],
-        notes: json["NOTES"],
-        active: json["active"],
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        idClotheType:
+            json["ID_CLOTHE_TYPE"] == null ? null : json["ID_CLOTHE_TYPE"],
+        clotheType: json["CLOTHE_TYPE"] == null ? null : json["CLOTHE_TYPE"],
+        notes: json["NOTES"] == null ? null : json["NOTES"],
+        active: json["active"] == null ? null : json["active"],
       );
 
   Map<String, dynamic> toJson() => {
-        "ID_CLOTHE_TYPE": idClotheType,
-        "CLOTHE_TYPE": clotheType,
-        "NOTES": notes,
-        "active": active,
+        "ID_CLOTHE_TYPE": idClotheType == null ? null : idClotheType,
+        "CLOTHE_TYPE": clotheType == null ? null : clotheType,
+        "NOTES": notes == null ? null : notes,
+        "active": active == null ? null : active,
       };
 }
