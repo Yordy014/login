@@ -65,7 +65,7 @@ class _CardDetail extends StatelessWidget {
             color: Colors.grey.withOpacity(0.3)),
         child: Row(
           // crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Icon(FontAwesomeIcons.tshirt),
             SizedBox(
@@ -76,11 +76,11 @@ class _CardDetail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Prenda: ${detail[i].billDetaiLs[index].serviceType.clotheType.clotheType}',
+                  'Prenda: ${detail[i].billDetaiLs[index].clotheType}',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 Text(
-                  'Estado: ${detail[i].billDetaiLs[index].department.departmentName}',
+                  'Departamento: ${detail[i].billDetaiLs[index].department.departmentName}',
                   style: TextStyle(fontSize: 16),
                 )
               ],
@@ -96,7 +96,7 @@ class _CardDetail extends StatelessWidget {
 
             Container(
               child: Text(
-                  '\$${detail[i].billDetaiLs[index].serviceType.price}.00',
+                  '\$${detail[i].billDetaiLs[index].serviceTypePrice}.00',
                   style: TextStyle(fontSize: 18)),
             )
           ],

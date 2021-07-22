@@ -17,6 +17,8 @@ class ServicesApi with ChangeNotifier {
   ServicesModel _dataService = new ServicesModel();
   BillModel _dataBill = new BillModel();
 
+  bool _isLoading = true;
+
   String _firstName = '';
   String _lastName = '';
   String _telNumber = '';
@@ -24,10 +26,17 @@ class ServicesApi with ChangeNotifier {
 
   ServicesModel get dataServices => _dataService;
 
+  bool get isLoading => this._isLoading;
+
   String get firstName => this._firstName;
   String get lastName => this._lastName;
   String get telNumber => this._telNumber;
   String get address => this._address;
+
+  set isLoading(bool value) {
+    this._isLoading = value;
+    notifyListeners();
+  }
 
   set dataUser(LoginModel value) {
     this._dataUser = value;
@@ -99,7 +108,8 @@ class ServicesApi with ChangeNotifier {
     }
   }
 
-  bool callOneTime = false;
+  // bool callOneTime = false;
+
   void getOrders() async {
     // if (callOneTime == false) {
     //   final url =
@@ -113,14 +123,19 @@ class ServicesApi with ChangeNotifier {
     //   print(this._dataBill.data.length);
     // }
     // callOneTime = true;
-    final url =
-        Uri.parse('$_urlApi/bill/bycustomer/${this._dataUser.user.idUser}');
-    final req = await http.get(url, headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ' + this._dataUser.token,
-    });
-    this._dataBill = billModelFromJson(req.body);
-    notifyListeners();
+
+    if (this._isLoading) {
+      final url =
+          Uri.parse('$_urlApi/bill/bycustomer/${this._dataUser.user.idUser}');
+      final req = await http.get(url, headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + this._dataUser.token,
+      });
+      this._dataBill = billModelFromJson(req.body);
+      this._isLoading = false;
+      notifyListeners();
+      print('Hola');
+    }
   }
 
   putDataUser() async {

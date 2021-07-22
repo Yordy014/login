@@ -18,13 +18,17 @@ class BillModel {
   List<Datum> data;
 
   factory BillModel.fromJson(Map<String, dynamic> json) => BillModel(
-        ok: json["ok"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        ok: json["ok"] == null ? null : json["ok"],
+        data: json["data"] == null
+            ? null
+            : List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "ok": ok,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "ok": ok == null ? null : ok,
+        "data": data == null
+            ? null
+            : List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
@@ -58,34 +62,47 @@ class Datum {
   List<BillDetail> billDetaiLs;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        idBill: json["ID_BILL"],
-        customer: json["CUSTOMER"],
-        currentDate: DateTime.parse(json["CURRENT_DATE"]),
-        dateDeliver: DateTime.parse(json["DATE_DELIVER"]),
-        subTotal: json["SUB_TOTAL"],
-        discount: json["DISCOUNT"],
-        itbis: json["ITBIS"],
-        active: json["active"],
-        employee: json["employee"],
-        cliente: Cliente.fromJson(json["cliente"]),
-        trabajador: Trabajador.fromJson(json["trabajador"]),
-        billDetaiLs: List<BillDetail>.from(
-            json["BILL_DETAILs"].map((x) => BillDetail.fromJson(x))),
+        idBill: json["ID_BILL"] == null ? null : json["ID_BILL"],
+        customer: json["CUSTOMER"] == null ? null : json["CUSTOMER"],
+        currentDate: json["CURRENT_DATE"] == null
+            ? null
+            : DateTime.parse(json["CURRENT_DATE"]),
+        dateDeliver: json["DATE_DELIVER"] == null
+            ? null
+            : DateTime.parse(json["DATE_DELIVER"]),
+        subTotal: json["SUB_TOTAL"] == null ? null : json["SUB_TOTAL"],
+        discount: json["DISCOUNT"] == null ? null : json["DISCOUNT"],
+        itbis: json["ITBIS"] == null ? null : json["ITBIS"],
+        active: json["active"] == null ? null : json["active"],
+        employee: json["employee"] == null ? null : json["employee"],
+        cliente:
+            json["cliente"] == null ? null : Cliente.fromJson(json["cliente"]),
+        trabajador: json["trabajador"] == null
+            ? null
+            : Trabajador.fromJson(json["trabajador"]),
+        billDetaiLs: json["BILL_DETAILs"] == null
+            ? null
+            : List<BillDetail>.from(
+                json["BILL_DETAILs"].map((x) => BillDetail.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "ID_BILL": idBill,
-        "CUSTOMER": customer,
-        "CURRENT_DATE": currentDate.toIso8601String(),
-        "DATE_DELIVER": dateDeliver.toIso8601String(),
-        "SUB_TOTAL": subTotal,
-        "DISCOUNT": discount,
-        "ITBIS": itbis,
-        "active": active,
-        "employee": employee,
-        "cliente": cliente.toJson(),
-        "trabajador": trabajador.toJson(),
-        "BILL_DETAILs": List<dynamic>.from(billDetaiLs.map((x) => x.toJson())),
+        "ID_BILL": idBill == null ? null : idBill,
+        "CUSTOMER": customer == null ? null : customer,
+        "CURRENT_DATE":
+            currentDate == null ? null : currentDate.toIso8601String(),
+        "DATE_DELIVER":
+            dateDeliver == null ? null : dateDeliver.toIso8601String(),
+        "SUB_TOTAL": subTotal == null ? null : subTotal,
+        "DISCOUNT": discount == null ? null : discount,
+        "ITBIS": itbis == null ? null : itbis,
+        "active": active == null ? null : active,
+        "employee": employee == null ? null : employee,
+        "cliente": cliente == null ? null : cliente.toJson(),
+        "trabajador": trabajador == null ? null : trabajador.toJson(),
+        "BILL_DETAILs": billDetaiLs == null
+            ? null
+            : List<dynamic>.from(billDetaiLs.map((x) => x.toJson())),
       };
 }
 
@@ -101,44 +118,68 @@ class BillDetail {
     this.processingTime,
     this.serviceType,
     this.department,
+    this.serviceSelection,
+    this.clotheType,
   });
 
   String idBillDetail;
   String idBill;
-  String idServiceType;
+  dynamic idServiceType;
   List<String> idServicesType;
   String serviceTypePrice;
   String currentDept;
   DateTime lastUpdate;
-  DateTime processingTime;
-  ServiceType serviceType;
+  dynamic processingTime;
+  dynamic serviceType;
   BillDetailDepartment department;
+  List<ServiceSelection> serviceSelection;
+  String clotheType;
 
   factory BillDetail.fromJson(Map<String, dynamic> json) => BillDetail(
-        idBillDetail: json["ID_BILL_DETAIL"],
-        idBill: json["ID_BILL"],
+        idBillDetail:
+            json["ID_BILL_DETAIL"] == null ? null : json["ID_BILL_DETAIL"],
+        idBill: json["ID_BILL"] == null ? null : json["ID_BILL"],
         idServiceType: json["ID_SERVICE_TYPE"],
-        idServicesType:
-            List<String>.from(json["ID_SERVICES_TYPE"].map((x) => x)),
-        serviceTypePrice: json["SERVICE_TYPE_PRICE"],
-        currentDept: json["CURRENT_DEPT"],
-        lastUpdate: DateTime.parse(json["LAST_UPDATE"]),
-        processingTime: DateTime.parse(json["PROCESSING_TIME"]),
-        serviceType: ServiceType.fromJson(json["SERVICE_TYPE"]),
-        department: BillDetailDepartment.fromJson(json["DEPARTMENT"]),
+        idServicesType: json["ID_SERVICES_TYPE"] == null
+            ? null
+            : List<String>.from(json["ID_SERVICES_TYPE"].map((x) => x)),
+        serviceTypePrice: json["SERVICE_TYPE_PRICE"] == null
+            ? null
+            : json["SERVICE_TYPE_PRICE"],
+        currentDept: json["CURRENT_DEPT"] == null ? null : json["CURRENT_DEPT"],
+        lastUpdate: json["LAST_UPDATE"] == null
+            ? null
+            : DateTime.parse(json["LAST_UPDATE"]),
+        processingTime: json["PROCESSING_TIME"],
+        serviceType: json["SERVICE_TYPE"],
+        department: json["DEPARTMENT"] == null
+            ? null
+            : BillDetailDepartment.fromJson(json["DEPARTMENT"]),
+        serviceSelection: json["serviceSelection"] == null
+            ? null
+            : List<ServiceSelection>.from(json["serviceSelection"]
+                .map((x) => ServiceSelection.fromJson(x))),
+        clotheType: json["clothe_type"] == null ? null : json["clothe_type"],
       );
 
   Map<String, dynamic> toJson() => {
-        "ID_BILL_DETAIL": idBillDetail,
-        "ID_BILL": idBill,
+        "ID_BILL_DETAIL": idBillDetail == null ? null : idBillDetail,
+        "ID_BILL": idBill == null ? null : idBill,
         "ID_SERVICE_TYPE": idServiceType,
-        "ID_SERVICES_TYPE": List<dynamic>.from(idServicesType.map((x) => x)),
-        "SERVICE_TYPE_PRICE": serviceTypePrice,
-        "CURRENT_DEPT": currentDept,
-        "LAST_UPDATE": lastUpdate.toIso8601String(),
-        "PROCESSING_TIME": processingTime.toIso8601String(),
-        "SERVICE_TYPE": serviceType.toJson(),
-        "DEPARTMENT": department.toJson(),
+        "ID_SERVICES_TYPE": idServicesType == null
+            ? null
+            : List<dynamic>.from(idServicesType.map((x) => x)),
+        "SERVICE_TYPE_PRICE":
+            serviceTypePrice == null ? null : serviceTypePrice,
+        "CURRENT_DEPT": currentDept == null ? null : currentDept,
+        "LAST_UPDATE": lastUpdate == null ? null : lastUpdate.toIso8601String(),
+        "PROCESSING_TIME": processingTime,
+        "SERVICE_TYPE": serviceType,
+        "DEPARTMENT": department == null ? null : department.toJson(),
+        "serviceSelection": serviceSelection == null
+            ? null
+            : List<dynamic>.from(serviceSelection.map((x) => x.toJson())),
+        "clothe_type": clotheType == null ? null : clotheType,
       };
 }
 
@@ -147,67 +188,76 @@ class BillDetailDepartment {
     this.idDepartment,
     this.departmentName,
     this.departmentDescr,
+    this.useScanner,
   });
 
   String idDepartment;
   String departmentName;
   String departmentDescr;
+  bool useScanner;
 
   factory BillDetailDepartment.fromJson(Map<String, dynamic> json) =>
       BillDetailDepartment(
-        idDepartment: json["ID_DEPARTMENT"],
-        departmentName: json["DEPARTMENT_NAME"],
-        departmentDescr: json["DEPARTMENT_DESCR"],
+        idDepartment:
+            json["ID_DEPARTMENT"] == null ? null : json["ID_DEPARTMENT"],
+        departmentName:
+            json["DEPARTMENT_NAME"] == null ? null : json["DEPARTMENT_NAME"],
+        departmentDescr:
+            json["DEPARTMENT_DESCR"] == null ? null : json["DEPARTMENT_DESCR"],
+        useScanner: json["USE_SCANNER"] == null ? null : json["USE_SCANNER"],
       );
 
   Map<String, dynamic> toJson() => {
-        "ID_DEPARTMENT": idDepartment,
-        "DEPARTMENT_NAME": departmentName,
-        "DEPARTMENT_DESCR": departmentDescr,
+        "ID_DEPARTMENT": idDepartment == null ? null : idDepartment,
+        "DEPARTMENT_NAME": departmentName == null ? null : departmentName,
+        "DEPARTMENT_DESCR": departmentDescr == null ? null : departmentDescr,
+        "USE_SCANNER": useScanner == null ? null : useScanner,
       };
 }
 
-class ServiceType {
-  ServiceType({
+class ServiceSelection {
+  ServiceSelection({
+    this.clotheType,
+    this.idServiceType,
     this.type,
     this.price,
     this.discount,
-    this.clotheType,
-  });
-
-  String type;
-  String price;
-  int discount;
-  ClotheType clotheType;
-
-  factory ServiceType.fromJson(Map<String, dynamic> json) => ServiceType(
-        type: json["TYPE"],
-        price: json["PRICE"],
-        discount: json["DISCOUNT"],
-        clotheType: ClotheType.fromJson(json["clothe_type"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "TYPE": type,
-        "PRICE": price,
-        "DISCOUNT": discount,
-        "clothe_type": clotheType.toJson(),
-      };
-}
-
-class ClotheType {
-  ClotheType({
-    this.clotheType,
+    this.idService,
+    this.service,
+    this.active,
   });
 
   String clotheType;
+  String idServiceType;
+  String type;
+  String price;
+  int discount;
+  String idService;
+  String service;
+  bool active;
 
-  factory ClotheType.fromJson(Map<String, dynamic> json) => ClotheType(
-        clotheType: json["CLOTHE_TYPE"],
+  factory ServiceSelection.fromJson(Map<String, dynamic> json) =>
+      ServiceSelection(
+        clotheType: json["CLOTHE_TYPE"] == null ? null : json["CLOTHE_TYPE"],
+        idServiceType:
+            json["ID_SERVICE_TYPE"] == null ? null : json["ID_SERVICE_TYPE"],
+        type: json["TYPE"] == null ? null : json["TYPE"],
+        price: json["PRICE"] == null ? null : json["PRICE"],
+        discount: json["DISCOUNT"] == null ? null : json["DISCOUNT"],
+        idService: json["ID_SERVICE"] == null ? null : json["ID_SERVICE"],
+        service: json["SERVICE"] == null ? null : json["SERVICE"],
+        active: json["active"] == null ? null : json["active"],
       );
 
   Map<String, dynamic> toJson() => {
-        "CLOTHE_TYPE": clotheType,
+        "CLOTHE_TYPE": clotheType == null ? null : clotheType,
+        "ID_SERVICE_TYPE": idServiceType == null ? null : idServiceType,
+        "TYPE": type == null ? null : type,
+        "PRICE": price == null ? null : price,
+        "DISCOUNT": discount == null ? null : discount,
+        "ID_SERVICE": idService == null ? null : idService,
+        "SERVICE": service == null ? null : service,
+        "active": active == null ? null : active,
       };
 }
 
@@ -223,15 +273,15 @@ class Cliente {
   Person person;
 
   factory Cliente.fromJson(Map<String, dynamic> json) => Cliente(
-        email: json["EMAIL"],
-        username: json["USERNAME"],
-        person: Person.fromJson(json["PERSON"]),
+        email: json["EMAIL"] == null ? null : json["EMAIL"],
+        username: json["USERNAME"] == null ? null : json["USERNAME"],
+        person: json["PERSON"] == null ? null : Person.fromJson(json["PERSON"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "EMAIL": email,
-        "USERNAME": username,
-        "PERSON": person.toJson(),
+        "EMAIL": email == null ? null : email,
+        "USERNAME": username == null ? null : username,
+        "PERSON": person == null ? null : person.toJson(),
       };
 }
 
@@ -249,17 +299,17 @@ class Person {
   String address;
 
   factory Person.fromJson(Map<String, dynamic> json) => Person(
-        firstName: json["FIRST_NAME"],
-        lastName: json["LAST_NAME"],
-        telNumber: json["TEL_NUMBER"],
-        address: json["ADDRESS"],
+        firstName: json["FIRST_NAME"] == null ? null : json["FIRST_NAME"],
+        lastName: json["LAST_NAME"] == null ? null : json["LAST_NAME"],
+        telNumber: json["TEL_NUMBER"] == null ? null : json["TEL_NUMBER"],
+        address: json["ADDRESS"] == null ? null : json["ADDRESS"],
       );
 
   Map<String, dynamic> toJson() => {
-        "FIRST_NAME": firstName,
-        "LAST_NAME": lastName,
-        "TEL_NUMBER": telNumber,
-        "ADDRESS": address,
+        "FIRST_NAME": firstName == null ? null : firstName,
+        "LAST_NAME": lastName == null ? null : lastName,
+        "TEL_NUMBER": telNumber == null ? null : telNumber,
+        "ADDRESS": address == null ? null : address,
       };
 }
 
@@ -277,17 +327,19 @@ class Trabajador {
   TrabajadorDepartment department;
 
   factory Trabajador.fromJson(Map<String, dynamic> json) => Trabajador(
-        email: json["EMAIL"],
-        username: json["USERNAME"],
-        role: json["ROLE"],
-        department: TrabajadorDepartment.fromJson(json["DEPARTMENT"]),
+        email: json["EMAIL"] == null ? null : json["EMAIL"],
+        username: json["USERNAME"] == null ? null : json["USERNAME"],
+        role: json["ROLE"] == null ? null : json["ROLE"],
+        department: json["DEPARTMENT"] == null
+            ? null
+            : TrabajadorDepartment.fromJson(json["DEPARTMENT"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "EMAIL": email,
-        "USERNAME": username,
-        "ROLE": role,
-        "DEPARTMENT": department.toJson(),
+        "EMAIL": email == null ? null : email,
+        "USERNAME": username == null ? null : username,
+        "ROLE": role == null ? null : role,
+        "DEPARTMENT": department == null ? null : department.toJson(),
       };
 }
 
@@ -300,10 +352,11 @@ class TrabajadorDepartment {
 
   factory TrabajadorDepartment.fromJson(Map<String, dynamic> json) =>
       TrabajadorDepartment(
-        departmentName: json["DEPARTMENT_NAME"],
+        departmentName:
+            json["DEPARTMENT_NAME"] == null ? null : json["DEPARTMENT_NAME"],
       );
 
   Map<String, dynamic> toJson() => {
-        "DEPARTMENT_NAME": departmentName,
+        "DEPARTMENT_NAME": departmentName == null ? null : departmentName,
       };
 }

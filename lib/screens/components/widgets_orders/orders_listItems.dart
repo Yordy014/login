@@ -121,7 +121,7 @@ class _FootOrderList extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Text(
-          'Le Asistío: ${bills[i].trabajador.username}',
+          'Le Asistío: ${bills[i].cliente.person.firstName} ${bills[i].cliente.person.lastName}',
           style: TextStyle(fontSize: 16, color: Colors.black54),
         ),
         SizedBox(
@@ -130,7 +130,7 @@ class _FootOrderList extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           height: 20,
-          width: 100,
+          width: 95,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10), color: Colors.white60),
           child: Text(

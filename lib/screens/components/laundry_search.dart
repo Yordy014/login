@@ -17,9 +17,7 @@ extension StringExtension on String {
 class _LaundrySearchState extends State<LaundrySearch> {
   @override
   Widget build(BuildContext context) {
-    final dataServices = Provider.of<ServicesApi>(context).dataServices;
-    final clotheLength =
-        Provider.of<ServicesApi>(context).dataServices.data?.length ?? 0;
+    Provider.of<ServicesApi>(context).dataServices.data?.length;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade50,
@@ -56,7 +54,7 @@ class _LaundrySearchState extends State<LaundrySearch> {
                         height: 20,
                       ),
                       Text(
-                        'LaVapp es nueva alaida a la hora de dar seguimientos a sus piezas de ropas que dejes en la lavandería. En la Opción al lado del icono de casa, podra ver las prendas que tiene en la lavandería. Al dar tap a una de ella puede ver el detalle de la misma, Tambien puede ver el estado en que se cuentra, desde que el estado sea igual Recepción puede pasar a recoger sus prendas.',
+                        'LaVapp es su nueva alaida a la hora de dar seguimientos a sus piezas de ropas que dejes en la lavandería. En la Opción al lado del icono de casa, podra ver las prendas que tiene en la lavandería. Al dar tap a una de ella puede ver el detalle de la misma, Tambien puede ver el estado en que se cuentra, desde que el estado sea igual Recepción puede pasar a recoger sus prendas.',
                         style: TextStyle(fontSize: 18),
                       ),
                       SizedBox(
@@ -81,113 +79,6 @@ class _LaundrySearchState extends State<LaundrySearch> {
             ),
           ),
         ),
-        // body: Container(
-        //   padding: EdgeInsets.all(2),
-
-        //   // height: MediaQuery.of(context).size.height * 1,
-        //   child: Column(
-        //     children: [
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //         children: [Text('Pieza'), Text('Servicio'), Text('Precio')],
-        //       ),
-        //       Container(
-        //         height: MediaQuery.of(context).size.height * 0.75,
-        //         child: Padding(
-        //           padding: const EdgeInsets.all(8.0),
-        //           child: ListView.builder(
-        //               itemCount: clotheLength ?? 0,
-        //               itemBuilder: (context, index) {
-        //                 final servicesLength = Provider.of<ServicesApi>(context)
-        //                         .dataServices
-        //                         .data[index]
-        //                         .serviceTypEs
-        //                         ?.length ??
-        //                     0;
-
-        //                 return Container(
-        //                   padding: EdgeInsets.all(2),
-        //                   child: Column(
-        //                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //                     crossAxisAlignment: CrossAxisAlignment.center,
-        //                     children: [
-        //                       Container(
-        //                         padding: EdgeInsets.all(3),
-        //                         decoration: BoxDecoration(
-        //                             color: Colors.grey.withOpacity(0.3),
-        //                             borderRadius: BorderRadius.circular(20)),
-        //                         child: Row(
-        //                           mainAxisAlignment: MainAxisAlignment.start,
-        //                           crossAxisAlignment: CrossAxisAlignment.start,
-        //                           children: [
-        //                             Container(
-        //                               width: MediaQuery.of(context).size.width *
-        //                                   0.25,
-        //                               child: Text(
-        //                                   '${dataServices.data[index].clotheType}:'),
-        //                             ),
-        //                             SizedBox(
-        //                               width: 30,
-        //                             ),
-        //                             Row(
-        //                               mainAxisAlignment: MainAxisAlignment.end,
-        //                               crossAxisAlignment:
-        //                                   CrossAxisAlignment.end,
-        //                               children: [
-        //                                 Container(
-        //                                   height: 60,
-        //                                   width: MediaQuery.of(context)
-        //                                           .size
-        //                                           .width *
-        //                                       0.6,
-        //                                   child: ListView.builder(
-        //                                       // shrinkWrap: true,
-        //                                       physics:
-        //                                           NeverScrollableScrollPhysics(),
-        //                                       itemCount: servicesLength ?? 0,
-        //                                       itemBuilder: (context, i) {
-        //                                         return Container(
-        //                                           // alignment: Alignment,
-        //                                           child: Row(
-        //                                             mainAxisAlignment:
-        //                                                 MainAxisAlignment
-        //                                                     .spaceBetween,
-        //                                             children: [
-        //                                               Container(
-        //                                                 child: Text(
-        //                                                   '${dataServices.data[index].serviceTypEs[i].type}',
-        //                                                   style: TextStyle(
-        //                                                       fontSize: 2),
-        //                                                 ),
-        //                                               ),
-        //                                               SizedBox(width: 1),
-        //                                               Container(
-        //                                                 child: Text(
-        //                                                     '${dataServices.data[index].serviceTypEs[i].price}'),
-        //                                               ),
-        //                                               SizedBox(width: 1),
-        //                                             ],
-        //                                           ),
-        //                                         );
-        //                                       }),
-        //                                 )
-        //                               ],
-        //                             )
-        //                           ],
-        //                         ),
-        //                       ),
-        //                       // SizedBox(
-        //                       //   height: 1,
-        //                       // ),
-        //                     ],
-        //                   ),
-        //                 );
-        //               }),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
       ),
     );
   }

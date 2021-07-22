@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/api/services/lavapp_backend.dart';
-import 'package:login/screens/settings.dart';
+
 import 'package:provider/provider.dart';
 
 import '../LogIn.dart';
