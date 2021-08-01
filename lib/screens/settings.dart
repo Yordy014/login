@@ -300,7 +300,7 @@ class _SettingsState extends State<Settings> {
                       Container(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          'Este @yordyrodrigues y @odalmipaulino garantiza que la LaVapp y la información personal que usted envía cuenta con la seguridad necesaria. Los datos ingresados por usuario o en el caso de requerir una validación de los pedidos no serán entregados a terceros, salvo que deba ser revelada en cumplimiento a una orden judicial o requerimientos legales.',
+                          'Este @yordyrodriguez y @odalmipaulino garantiza que la LaVapp y la información personal que usted envía cuenta con la seguridad necesaria. Los datos ingresados por usuario o en el caso de requerir una validación de los pedidos no serán entregados a terceros, salvo que deba ser revelada en cumplimiento a una orden judicial o requerimientos legales.',
                           style: TextStyle(
                             fontSize: 14,
                           ),
