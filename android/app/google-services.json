@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "939712353237",
+    "project_id": "lavapp-cfe46",
+    "storage_bucket": "lavapp-cfe46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939712353237:android:98d09a14930c7a5896e35c",
+        "android_client_info": {
+          "package_name": "com.yordyodalmi.lavapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939712353237-kd9m85jsf5rvlm5o3db9dika74bksltu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yordyodalmi.lavapp",
+            "certificate_hash": "ab7dba098d3cacebc5f57eb65390a1e7dcd0a29c"
+          }
+        },
+        {
+          "client_id": "939712353237-fo3c6iai6fmuu0ead10fet54hbb0m7r4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACTn4bN-ELbEGXLqMg6EJ-j1_sJKOzVRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939712353237-fo3c6iai6fmuu0ead10fet54hbb0m7r4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

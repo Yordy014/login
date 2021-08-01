@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:login/api/services/lavapp_backend.dart';
+import 'package:login/api/services/save_login.dart';
 // import 'package:login/screens/components/profile_settings.dart';
 // import 'package:login/screens/components/change_pass.dart';
 import 'package:login/screens/settings_chance_page.dart';
@@ -110,7 +111,7 @@ class _SettingsState extends State<Settings> {
                           .setPassword = '';
                       Provider.of<ServicesApi>(context, listen: false)
                           .setEmail = '';
-
+                      PreferenciasUsuario().datosUsuario = 'no logueado';
                       return Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => LogIn()));
                     },

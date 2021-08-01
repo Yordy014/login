@@ -6,8 +6,10 @@ import 'package:login/api/models/bill.dart';
 import 'package:login/api/models/login.dart';
 import 'package:login/api/models/putuser_model.dart';
 import 'package:login/api/models/services.dart';
+import 'package:login/api/services/save_login.dart';
 
 var _urlApi = 'https://lavapp-backend.herokuapp.com/api';
+final prefs = PreferenciasUsuario();
 
 class ServicesApi with ChangeNotifier {
   String _email = 'yordy';
@@ -98,6 +100,9 @@ class ServicesApi with ChangeNotifier {
       if (bur['ok'] == true) {
         this._dataUser = loginModelFromJson(res);
         tapon = false;
+        final presf = new PreferenciasUsuario();
+        presf.datosUsuario = res;
+        print(presf.datosUsuario);
         return true;
       } else {
         tapon = false;
@@ -124,18 +129,21 @@ class ServicesApi with ChangeNotifier {
     // }
     // callOneTime = true;
 
-    if (this._isLoading) {
-      final url =
-          Uri.parse('$_urlApi/bill/bycustomer/${this._dataUser.user.idUser}');
-      final req = await http.get(url, headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ' + this._dataUser.token,
-      });
-      this._dataBill = billModelFromJson(req.body);
-      this._isLoading = false;
-      notifyListeners();
-      print('Hola');
+    // if (this._isLoading) {
+    if (prefs.datosUsuario != 'no logueado') {
+      this._dataUser = loginModelFromJson(prefs.datosUsuario);
     }
+    final url =
+        Uri.parse('$_urlApi/bill/bycustomer/${this._dataUser.user.idUser}');
+    final req = await http.get(url, headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer ' + this._dataUser.token,
+    });
+    this._dataBill = billModelFromJson(req.body);
+    // this._isLoading = false;
+    notifyListeners();
+    print('Hola');
+    // }
   }
 
   putDataUser() async {
@@ -180,17 +188,17 @@ class ServicesApi with ChangeNotifier {
     }
   }
 
-  getSerciesClothe() async {
-    final url = Uri.parse('$_urlApi/clothe');
-    final req = await http.get(
-      url,
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ' + this._dataUser.token,
-      },
-    );
-    final res = servicesModelFromJson(req.body);
-    this._dataService = res;
-    notifyListeners();
-  }
+  // getSerciesClothe() async {
+  //   final url = Uri.parse('$_urlApi/clothe');
+  //   final req = await http.get(
+  //     url,
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //       'Authorization': 'Bearer ' + this._dataUser.token,
+  //     },
+  //   );
+  //   final res = servicesModelFromJson(req.body);
+  //   this._dataService = res;
+  //   notifyListeners();
+  // }
 }
