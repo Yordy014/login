@@ -37,7 +37,7 @@ class ServicesApi with ChangeNotifier {
 
   set isLoading(bool value) {
     this._isLoading = value;
-    notifyListeners();
+    // notifyListeners();
   }
 
   set dataUser(LoginModel value) {
@@ -129,21 +129,21 @@ class ServicesApi with ChangeNotifier {
     // }
     // callOneTime = true;
 
-    // if (this._isLoading) {
-    if (prefs.datosUsuario != 'no logueado') {
-      this._dataUser = loginModelFromJson(prefs.datosUsuario);
+    if (this._isLoading) {
+      if (prefs.datosUsuario != 'no logueado') {
+        this._dataUser = loginModelFromJson(prefs.datosUsuario);
+      }
+      final url =
+          Uri.parse('$_urlApi/bill/bycustomer/${this._dataUser.user.idUser}');
+      final req = await http.get(url, headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + this._dataUser.token,
+      });
+      this._dataBill = billModelFromJson(req.body);
+      this._isLoading = false;
+      notifyListeners();
+      // print('Hola');
     }
-    final url =
-        Uri.parse('$_urlApi/bill/bycustomer/${this._dataUser.user.idUser}');
-    final req = await http.get(url, headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ' + this._dataUser.token,
-    });
-    this._dataBill = billModelFromJson(req.body);
-    // this._isLoading = false;
-    notifyListeners();
-    print('Hola');
-    // }
   }
 
   putDataUser() async {

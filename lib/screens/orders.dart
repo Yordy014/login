@@ -14,7 +14,9 @@ class Orders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Provider.of<ServicesApi>(context).getOrders();
+    Provider.of<ServicesApi>(context).isLoading = true;
     final bill = Provider.of<ServicesApi>(context).dataBill;
+
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       body: (bill.data?.length == 0 ?? 0)
