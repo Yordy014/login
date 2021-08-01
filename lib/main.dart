@@ -19,6 +19,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new PreferenciasUsuario();
   await prefs.initPrefs();
+  if (prefs.datosUsuario.isEmpty) {
+    prefs.datosUsuario = 'no logueado';
+  }
 
   runApp(MyApp());
 }
@@ -32,6 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     final prefs = PreferenciasUsuario();
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(

@@ -21,6 +21,6 @@ class PreferenciasUsuario {
   }
 
   set datosUsuario(String value) {
-    _prefs.setString('datosUsuario', value);
+    this._prefs.setString('datosUsuario', value);
   }
 }
