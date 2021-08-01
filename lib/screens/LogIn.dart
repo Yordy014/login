@@ -132,8 +132,8 @@ class _LogInState extends State<LogIn> {
                             if (res == true) {
                               Provider.of<ServicesApi>(context, listen: false)
                                   .getOrders();
-                              Provider.of<ServicesApi>(context, listen: false)
-                                  .getSerciesClothe();
+                              // Provider.of<ServicesApi>(context, listen: false)
+                              //     .getSerciesClothe();
                               return Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
