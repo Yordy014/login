@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:login/api/services/lavapp_backend.dart';
 import 'package:provider/provider.dart';
@@ -13,9 +15,12 @@ class ChangeSettings extends StatelessWidget {
     // final dataUser = Provider.of<ServicesApi>(context).getLoginModel ?? null;
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'Actualizar Datos',
+          style: TextStyle(color: Colors.white),
         ),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
               onPressed: () {
@@ -24,19 +29,14 @@ class ChangeSettings extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (BuildContext context) => ChangePassword()));
               },
-              icon: Icon(Icons.lock_open_outlined)),
-          // GestureDetector(
-          //     onTap: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (BuildContext context) => ChangePassword()));
-          //     },
-          //     child: Icon(Icons.lock_open_outlined)),
+              icon: Icon(
+                Icons.lock_open_outlined,
+                color: Colors.white,
+              )),
         ],
       ),
       body: Container(
-        child: Column(
+        child: ListView(
           children: [
             _FirstName(),
             _LastName(),
@@ -52,7 +52,7 @@ class ChangeSettings extends StatelessWidget {
                           .putDataUser();
                   if (res) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.green,
                       content: Text(
                         'Los datos fueron actualizados satisfactoriamente',
                         style: TextStyle(fontSize: 14),
@@ -73,16 +73,41 @@ class ChangeSettings extends StatelessWidget {
                   ));
                 },
                 // color: Color(0xFF2EC9FF),
-                child: Text('Actualizar',
+                child: Text('Actualizar Datos',
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                 color: LogIn.floatingButton,
                 // elevation: 10,
-                minWidth: 300,
+                minWidth: 200,
                 height: 50,
                 textColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)))
+                    borderRadius: BorderRadius.circular(10))),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.3,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Image.asset(
+                    'lib/assets/images/gear.png',
+                    color: const Color.fromRGBO(255, 255, 255, 0.15),
+                    colorBlendMode: BlendMode.modulate,
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          '',
+                          style: TextStyle(
+                              color: Colors.grey.shade600, fontSize: 18),
+                          overflow: TextOverflow.clip,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
@@ -99,7 +124,7 @@ class _FirstName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-      margin: const EdgeInsets.fromLTRB(20, 8, 20, 10),
+      margin: const EdgeInsets.fromLTRB(20, 30, 20, 10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
@@ -146,7 +171,7 @@ class _TelNumber extends StatelessWidget {
         children: [
           Expanded(
             child: ListTile(
-              leading: Icon(Icons.person_add_alt_rounded),
+              leading: Icon(Icons.phone),
               title: Text(
                 'Teléfono o Celular:',
                 style: TextStyle(
@@ -186,7 +211,7 @@ class _LastName extends StatelessWidget {
         children: [
           Expanded(
             child: ListTile(
-              leading: Icon(Icons.person_add_alt_rounded),
+              leading: Icon(Icons.person),
               title: Text(
                 'Apellido:',
                 style: TextStyle(
@@ -227,9 +252,9 @@ class _Address extends StatelessWidget {
         children: [
           Expanded(
             child: ListTile(
-              leading: Icon(Icons.person_add_alt_rounded),
+              leading: Icon(Icons.location_city),
               title: Text(
-                'Address:',
+                'Dirección:',
                 style: TextStyle(
                     // fontWeight: FontWeight.bold,
                     ),

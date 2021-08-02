@@ -26,6 +26,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             'Actualizar Contraseña',
             style: TextStyle(color: Colors.black, fontSize: 25),
           ),
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.grey.shade50,
         ),
         body: Center(
@@ -43,8 +44,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         labelText: 'Nueva Contraseña',
-                        prefixIcon: Icon(Icons.lock_outline),
-                        labelStyle: TextStyle(fontSize: 15),
+                        prefixIcon: Icon(
+                          Icons.lock_outline,
+                          color: LogIn.floatingButton,
+                        ),
+                        labelStyle: TextStyle(
+                            fontSize: 15, color: LogIn.floatingButton),
                       ),
                       onChanged: (value) {
                         Provider.of<ServicesApi>(context, listen: false)
@@ -61,8 +66,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         labelText: 'Repetir Contraseña',
-                        prefixIcon: Icon(Icons.lock_outline),
-                        labelStyle: TextStyle(fontSize: 15),
+                        prefixIcon: Icon(
+                          Icons.lock_outline,
+                          color: LogIn.floatingButton,
+                        ),
+                        labelStyle: TextStyle(
+                            fontSize: 15, color: LogIn.floatingButton),
                       ),
                       onChanged: (value) {
                         Provider.of<ServicesApi>(context, listen: false)
@@ -123,7 +132,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               ));
                             }
                           },
-                          child: Text('Actualizar',
+                          child: Text('Actualizar Contraseña',
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold)),
                           color: LogIn.floatingButton,
