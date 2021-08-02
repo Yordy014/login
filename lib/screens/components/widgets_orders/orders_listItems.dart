@@ -48,8 +48,9 @@ class _Card extends StatelessWidget {
         padding: EdgeInsets.all(20),
         width: double.infinity,
         decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.3),
-            borderRadius: BorderRadius.circular(20)),
+          color: Colors.grey.shade200,
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

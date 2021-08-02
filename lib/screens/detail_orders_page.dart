@@ -131,7 +131,10 @@ class _Header extends StatelessWidget {
               // alignment: Alignment.bottomRight,
               child: Text(
                 'Detalle de Orden',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             ),
             SizedBox(
@@ -142,8 +145,8 @@ class _Header extends StatelessWidget {
               child: Text(
                 'Total: ',
                 style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black38,
+                  fontSize: 20,
+                  color: Colors.black54,
                 ),
               ),
             )

@@ -87,7 +87,7 @@ class _OrdersAppBarState extends State<OrdersAppBar> {
         ),
         centerTitle: true,
         title: Text(
-          'Mis Ordenes',
+          'Mis Órdenes',
           style: TextStyle(color: Colors.white),
         ),
       ),

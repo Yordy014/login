@@ -24,7 +24,7 @@ class Orders extends StatelessWidget {
               child: Container(
               width: 200,
               child: Text(
-                'No posee ordenes! Si tiene ordenes y no se encuentran aquí, por favor comuniquese con la lavandería.',
+                'No posee ordenes! Si tiene órdenes y no se encuentran aquí, por favor comunîquese con la lavandería.',
                 textAlign: TextAlign.center,
               ),
             ))

@@ -21,7 +21,7 @@ void main() async {
   final prefs = new PreferenciasUsuario();
   await prefs.initPrefs();
   if (prefs.datosUsuario.isEmpty) {
-    prefs.datosUsuario = 'no logueado';
+    prefs.datosUsuario = 'No logueado';
   }
 
   await PushNotificactionService.initializeApp();
@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
               primaryColor: MyApp.floatingButton,
               accentColor: MyApp.floatingButton),
           // darkTheme: ,
-          home: (prefs.datosUsuario == 'no logueado') ? LogIn() : Home()),
+          home: (prefs.datosUsuario == 'No logueado') ? LogIn() : Home()),
     );
     // home: SignUp());
     // return MaterialApp(home: SignUp());

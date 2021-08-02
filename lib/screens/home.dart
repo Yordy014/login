@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/services.dart';
+import 'package:login/screens/LogIn.dart';
 // import 'package:flutter/services.dart';
 import 'package:login/screens/components/laundry_search.dart';
 import 'package:login/screens/orders.dart';
@@ -91,8 +92,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static const Color bottomBar = Color(0xfff2b3b6);
-  static const Color floatingButton = Color(0xffe38b90);
+  static const Color bottomBar = LogIn.bottomBar;
+  static const Color floatingButton = LogIn.floatingButton;
 
   int _page = 1;
   Widget currentScreen;

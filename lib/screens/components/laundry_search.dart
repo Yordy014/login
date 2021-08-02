@@ -48,20 +48,20 @@ class _LaundrySearchState extends State<LaundrySearch> {
                       Text(
                         'Bienvenido a LaVapp',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 30, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 20,
                       ),
                       Text(
-                        'LaVapp es su nueva alaida a la hora de dar seguimientos a sus piezas de ropas que dejes en la lavandería. En la Opción al lado del icono de casa, podra ver las prendas que tiene en la lavandería. Al dar tap a una de ella puede ver el detalle de la misma, Tambien puede ver el estado en que se cuentra, desde que el estado sea igual Recepción puede pasar a recoger sus prendas.',
+                        'LaVapp es su nueva aliada a la hora de dar seguimiento a sus piezas de ropas que deje en la lavandería. En la Opción al lado del icono de casa, podra ver las prendas que tiene en la lavandería. Al dar clic a una de ella puede ver el detalle de la misma, También puede ver el estado en que se encuentra, desde que el estado sea igual a "Recepción" puede pasar a retirar sus prendas.',
                         style: TextStyle(fontSize: 18),
                       ),
                       SizedBox(
                         height: 20,
                       ),
                       Text(
-                        'Cualquier inquietud, no dude en llamar a la Lavandería para mayor seguimiento',
+                        'Cualquier inquietud, no dude en llamar a la lavandería para dar mejor soporte y mayor seguimiento.',
                         style: TextStyle(fontSize: 18),
                       ),
                     ],
@@ -103,8 +103,8 @@ class _OfertaCamisas extends StatelessWidget {
           children: [
             ClipOval(
               child: Container(
-                width: 150,
-                height: double.infinity,
+                width: 190,
+                height: 190,
                 child: FadeInImage(
                     fit: BoxFit.fill,
                     placeholder: AssetImage(
@@ -118,7 +118,7 @@ class _OfertaCamisas extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Oferta! ',
+                  '¡Oferta! ',
                   style: TextStyle(fontSize: 40),
                 ),
                 Container(
@@ -129,7 +129,7 @@ class _OfertaCamisas extends StatelessWidget {
                 ),
                 Container(
                   child: Text(
-                    'En todas las camisas',
+                    'en todas las camisas',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -171,13 +171,13 @@ class _OfertaDePantalones extends StatelessWidget {
                 ),
                 Container(
                   child: Text(
-                    'los servicios de jeans ',
+                    'Los servicios de jeans ',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
                 Container(
                   child: Text(
-                    'tienen rebaja de 50%',
+                    'tienen rebaja de un 50%',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -185,8 +185,8 @@ class _OfertaDePantalones extends StatelessWidget {
             ),
             ClipOval(
               child: Container(
-                width: 150,
-                height: double.infinity,
+                width: 190,
+                height: 190,
                 child: FadeInImage(
                     fit: BoxFit.fill,
                     placeholder: AssetImage(
