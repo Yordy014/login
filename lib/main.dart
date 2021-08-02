@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/api/services/notication_firebase.dart';
 import 'package:login/screens/LogIn.dart';
 import 'package:login/screens/home.dart';
 // import 'package:login/api/models/login.dart';
@@ -23,14 +24,21 @@ void main() async {
     prefs.datosUsuario = 'no logueado';
   }
 
+  await PushNotificactionService.initializeApp();
+
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   static const Color bottomBar = Color(0xfff2b3b6);
   static const Color floatingButton = Color(0xffe38b90);
   static const Color darker = Color(0xffc2343d);
-  // This widget is the root of your application.
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
@@ -46,11 +54,11 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               textSelectionTheme:
-                  TextSelectionThemeData(cursorColor: floatingButton),
-              primaryColorLight: bottomBar,
-              primaryColorDark: darker,
-              primaryColor: floatingButton,
-              accentColor: floatingButton),
+                  TextSelectionThemeData(cursorColor: MyApp.floatingButton),
+              primaryColorLight: MyApp.bottomBar,
+              primaryColorDark: MyApp.darker,
+              primaryColor: MyApp.floatingButton,
+              accentColor: MyApp.floatingButton),
           // darkTheme: ,
           home: (prefs.datosUsuario == 'no logueado') ? LogIn() : Home()),
     );
