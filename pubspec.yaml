@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  url_launcher: ^6.0.9
   cupertino_icons: ^1.0.2
   firebase_core: ^1.4.0
   firebase_messaging: ^10.0.4
@@ -57,6 +58,7 @@ flutter:
     - lib/assets/images/my_orders.png
     - lib/assets/images/signin.png
     - lib/assets/images/gear.png
+    - lib/assets/images/logo.png
     - lib/assets/images/no-image-placeholder.png
 
     - lib/assets/icons/right-arrow.png

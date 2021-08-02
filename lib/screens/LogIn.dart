@@ -5,6 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:login/api/services/lavapp_backend.dart';
 import 'package:login/screens/home.dart';
 import 'package:provider/provider.dart';
+
+import 'package:url_launcher/url_launcher.dart';
+
 // import 'SignUp.dart';
 
 class LogIn extends StatefulWidget {
@@ -17,6 +20,27 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  // Future<void> makePhoneCall() async {
+  //   const url = 'tel:8096916094';
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+
+  // void customLaunch(command) async {
+  //   if (await canLaunch(command)) {
+  //     await launch(command);
+  //   } else {
+  //     print(' could not launch $command');
+  //   }
+  // }
+
+  _makePhoneCall(String url) {
+    launch(url);
+  }
+
   final scaffoldkey = GlobalKey<ScaffoldState>();
   // LoginModel resAccept = new LoginModel();
   // ErrorModel resDenegate = new ErrorModel();
@@ -42,8 +66,8 @@ class _LogInState extends State<LogIn> {
               // width: MediaQuery.of(context).size.width * 0.85,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('lib/assets/images/signin.png'),
-                fit: BoxFit.cover,
+                image: AssetImage('lib/assets/images/logo.png'),
+                fit: BoxFit.fitHeight,
               )),
             ),
             // AppBar(
@@ -73,8 +97,10 @@ class _LogInState extends State<LogIn> {
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               labelText: 'Nombre de Usuario',
-                              prefixIcon: Icon(Icons.person_outline),
-                              labelStyle: TextStyle(fontSize: 15)),
+                              prefixIcon: Icon(Icons.person_outline,
+                                  color: LogIn.floatingButton),
+                              labelStyle: TextStyle(
+                                  fontSize: 15, color: LogIn.floatingButton)),
                           onChanged: (value) {
                             Provider.of<ServicesApi>(context, listen: false)
                                 .setEmail = value;
@@ -90,8 +116,12 @@ class _LogInState extends State<LogIn> {
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               labelText: 'Contraseña',
-                              prefixIcon: Icon(Icons.lock_outline),
-                              labelStyle: TextStyle(fontSize: 15)),
+                              prefixIcon: Icon(
+                                Icons.lock_outline,
+                                color: LogIn.floatingButton,
+                              ),
+                              labelStyle: TextStyle(
+                                  fontSize: 15, color: LogIn.floatingButton)),
                           onChanged: (value) {
                             Provider.of<ServicesApi>(context, listen: false)
                                 .setPassword = value;
@@ -169,25 +199,33 @@ class _LogInState extends State<LogIn> {
                       padding: EdgeInsets.only(top: 20),
                       child: Center(
                           child: RichText(
+                              textAlign: TextAlign.center,
                               text: TextSpan(children: [
-                        TextSpan(
-                            text: "Aun no tiene cuenta?",
-                            style: TextStyle(
-                                fontSize: 15, color: Colors.grey.shade700)),
-                        TextSpan(
-                          text: '  Llame al 809-691-6094',
-                          style: TextStyle(
-                              color: LogIn.floatingButton, fontSize: 15),
-                          // recognizer: TapGestureRecognizer()
-                          //   ..onTap = () {
-                          //     Navigator.push(
-                          //         context,
-                          //         MaterialPageRoute(
-                          //             builder: (context) => SignUp()));
-                          //   })
-                        )
-                      ]))),
-                    )
+                                TextSpan(
+                                    text: "¿Aún no tienes una cuenta?",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.grey.shade700)),
+                                TextSpan(
+                                    text:
+                                        "                                       ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.grey.shade700)),
+                                TextSpan(
+                                    text:
+                                        '  ¡Llama YA! ¡A sólo un click de distancia!',
+                                    style: TextStyle(
+                                        color: LogIn.floatingButton,
+                                        fontSize: 17),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        setState(() {
+                                          _makePhoneCall('tel:8096916094');
+                                        });
+                                      })
+                              ]))),
+                    ),
                   ])),
             ),
             _isLoading
