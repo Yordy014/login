@@ -24,26 +24,22 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.0.9
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  provider: ^4.3.3
-  http: ^0.12.2
-  font_awesome_flutter: ^8.11.0
-  socket_io_client: ^1.0.1
+  firebase_core: ^1.4.0
   firebase_messaging: ^10.0.4
+  font_awesome_flutter: ^8.11.0
+  http: ^0.12.2
+  provider: ^4.3.3
   shared_preferences: ^2.0.6
+  socket_io_client: ^1.0.1
 
 dev_dependencies:
-  curved_navigation_bar: ^0.3.7
   flutter_test:
     sdk: flutter
+  curved_navigation_bar: ^0.3.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
 
@@ -65,15 +61,11 @@ flutter:
     - lib/assets/images/logo.png
     - lib/assets/images/no-image-placeholder.png
 
-    
     - lib/assets/icons/right-arrow.png
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
