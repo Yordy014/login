@@ -47,7 +47,8 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
-    bool _isLoading = false;
+    final flag = Provider.of<ServicesApi>(context, listen: false);
+    final flag1 = Provider.of<ServicesApi>(context).flag;
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -152,14 +153,15 @@ class _LogInState extends State<LogIn> {
                       padding: EdgeInsets.only(top: 40),
                       child: MaterialButton(
                           onPressed: () async {
-                            _isLoading = true;
+                            flag.flag = true;
                             final res = await Provider.of<ServicesApi>(context,
                                     listen: false)
                                 .setLogin();
-                            setState(() {
-                              _isLoading = false;
-                            });
-                            if (res == true) {
+                            setState(() {});
+
+                            if (res == 'si') {
+                              flag.flag = false;
+
                               Provider.of<ServicesApi>(context, listen: false)
                                   .getOrders();
                               // Provider.of<ServicesApi>(context, listen: false)
@@ -168,7 +170,10 @@ class _LogInState extends State<LogIn> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Home()));
-                            } else {
+                            }
+                            if (res == 'no') {
+                              flag.flag = false;
+
                               return ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 backgroundColor: LogIn.darker,
@@ -177,7 +182,21 @@ class _LogInState extends State<LogIn> {
                                   style: TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
-                                duration: Duration(milliseconds: 1500),
+                                duration: Duration(seconds: 5),
+                              ));
+                            }
+                            if (res == 'no_net') {
+                              flag.flag = false;
+
+                              return ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                backgroundColor: Color(0xffFFD9A1),
+                                content: Text(
+                                  'No hay conección a Internet, intente más tarde.',
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.center,
+                                ),
+                                duration: Duration(seconds: 5),
                               ));
                             }
                           },
@@ -214,7 +233,7 @@ class _LogInState extends State<LogIn> {
                                         color: Colors.grey.shade700)),
                                 TextSpan(
                                     text:
-                                        '  ¡Llama YA! ¡A sólo un click de distancia!',
+                                        '¡Llama YA! ¡A sólo un click de distancia!',
                                     style: TextStyle(
                                         color: LogIn.floatingButton,
                                         fontSize: 17),
@@ -228,15 +247,33 @@ class _LogInState extends State<LogIn> {
                     ),
                   ])),
             ),
-            _isLoading
+
+            (flag1)
                 ? Container(
-                    color: Colors.black.withOpacity(0.5),
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  )
+                    color: Colors.black26,
+                    // width: double.infinity,
+                    // height: double.infinity,
+                    child: CircularProgress())
                 : Container()
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CircularProgress extends StatefulWidget {
+  @override
+  _CircularProgressState createState() => _CircularProgressState();
+}
+
+class _CircularProgressState extends State<CircularProgress> {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Center(
+        child: CircularProgressIndicator(
+          color: LogIn.floatingButton,
         ),
       ),
     );

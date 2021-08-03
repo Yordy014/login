@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login/api/services/notication_firebase.dart';
+
 import 'package:login/screens/LogIn.dart';
 import 'package:login/screens/home.dart';
 // import 'package:login/api/models/login.dart';
@@ -20,11 +20,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new PreferenciasUsuario();
   await prefs.initPrefs();
-  if (prefs.datosUsuario.isEmpty) {
-    prefs.datosUsuario = 'No logueado';
-  }
 
-  await PushNotificactionService.initializeApp();
+  // await PushNotificactionService.initializeApp();
 
   runApp(MyApp());
 }
@@ -43,7 +40,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     final prefs = PreferenciasUsuario();
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -60,7 +56,9 @@ class _MyAppState extends State<MyApp> {
               primaryColor: MyApp.floatingButton,
               accentColor: MyApp.floatingButton),
           // darkTheme: ,
-          home: (prefs.datosUsuario == 'No logueado') ? LogIn() : Home()),
+          home: (prefs.datosUsuario == null || prefs.datosUsuario.isEmpty)
+              ? LogIn()
+              : Home()),
     );
     // home: SignUp());
     // return MaterialApp(home: SignUp());

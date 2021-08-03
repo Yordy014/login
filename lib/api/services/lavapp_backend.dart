@@ -20,6 +20,7 @@ class ServicesApi with ChangeNotifier {
   BillModel _dataBill = new BillModel();
 
   bool _isLoading = true;
+  bool _flag = false;
 
   String _firstName = '';
   String _lastName = '';
@@ -29,6 +30,7 @@ class ServicesApi with ChangeNotifier {
   ServicesModel get dataServices => _dataService;
 
   bool get isLoading => this._isLoading;
+  bool get flag => this._flag;
 
   String get firstName => this._firstName;
   String get lastName => this._lastName;
@@ -38,6 +40,11 @@ class ServicesApi with ChangeNotifier {
   set isLoading(bool value) {
     this._isLoading = value;
     // notifyListeners();
+  }
+
+  set flag(bool value) {
+    this._flag = value;
+    notifyListeners();
   }
 
   set dataUser(LoginModel value) {
@@ -86,7 +93,7 @@ class ServicesApi with ChangeNotifier {
   }
 
   var tapon = true;
-  Future<bool> setLogin() async {
+  Future<String> setLogin() async {
     if (this.tapon = true) {
       final url = '$_urlApi/usuario/login';
       final data = {'email': this._email, 'password': this._password};
@@ -96,21 +103,32 @@ class ServicesApi with ChangeNotifier {
           },
           body: jsonEncode(data));
       final res = req.body;
-      final bur = await jsonDecode(res);
-      if (bur['ok'] == true) {
-        this._dataUser = loginModelFromJson(res);
-        tapon = false;
-        final presf = new PreferenciasUsuario();
-        presf.datosUsuario = res;
-        print(presf.datosUsuario);
-        return true;
-      } else {
-        tapon = false;
-        return false;
+      if (req.statusCode == 200) {
+        final bur = await jsonDecode(res);
+        if (bur['ok'] == true) {
+          this._dataUser = loginModelFromJson(res);
+          tapon = false;
+          final presf = new PreferenciasUsuario();
+          presf.datosUsuario = res;
+          print(presf.datosUsuario);
+          return 'si';
+        }
       }
+      if (req.statusCode == 400) {
+        return 'no';
+      }
+      if (req.statusCode == 504) {
+        return 'no_net';
+      }
+      if (req.statusCode == 404) {
+        return 'no_net';
+      }
+
+      tapon = false;
     } else {
-      return false;
+      return 'no';
     }
+    return 'no';
   }
 
   // bool callOneTime = false;
@@ -130,7 +148,7 @@ class ServicesApi with ChangeNotifier {
     // callOneTime = true;
 
     if (this._isLoading) {
-      if (prefs.datosUsuario != 'no logueado') {
+      if (prefs.datosUsuario.isNotEmpty || prefs.datosUsuario != null) {
         this._dataUser = loginModelFromJson(prefs.datosUsuario);
       }
       final url =
@@ -139,9 +157,11 @@ class ServicesApi with ChangeNotifier {
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer ' + this._dataUser.token,
       });
-      this._dataBill = billModelFromJson(req.body);
-      this._isLoading = false;
-      notifyListeners();
+      if (req.statusCode == 200) {
+        this._dataBill = billModelFromJson(req.body);
+        this._isLoading = false;
+        notifyListeners();
+      }
       // print('Hola');
     }
   }

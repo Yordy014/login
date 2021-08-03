@@ -37,7 +37,7 @@ class _LaundrySearchState extends State<LaundrySearch> {
               children: [
                 Container(
                   padding: EdgeInsets.all(20),
-                  height: 400,
+                  height: MediaQuery.of(context).size.height * 0.55,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -103,8 +103,8 @@ class _OfertaCamisas extends StatelessWidget {
           children: [
             ClipOval(
               child: Container(
-                width: 190,
-                height: 190,
+                width: 170,
+                height: 170,
                 child: FadeInImage(
                     fit: BoxFit.fill,
                     placeholder: AssetImage(
@@ -161,32 +161,34 @@ class _OfertaDePantalones extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Rebajas ',
-                  style: TextStyle(fontSize: 40),
-                ),
-                Container(
-                  child: Text(
-                    'Los servicios de jeans ',
-                    style: TextStyle(fontSize: 18),
+            Flexible(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Rebajas ',
+                    style: TextStyle(fontSize: 40),
                   ),
-                ),
-                Container(
-                  child: Text(
-                    'tienen rebaja de un 50%',
-                    style: TextStyle(fontSize: 18),
+                  Container(
+                    child: Text(
+                      'Los servicios de jeans ',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
-                ),
-              ],
+                  Container(
+                    child: Text(
+                      'tienen rebaja de un 50%',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ],
+              ),
             ),
             ClipOval(
               child: Container(
-                width: 190,
-                height: 190,
+                width: 170,
+                height: 170,
                 child: FadeInImage(
                     fit: BoxFit.fill,
                     placeholder: AssetImage(

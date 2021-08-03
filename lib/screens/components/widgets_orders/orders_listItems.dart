@@ -45,7 +45,7 @@ class _Card extends StatelessWidget {
     final bills = Provider.of<ServicesApi>(context).dataBill.data;
     return GestureDetector(
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(10),
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.grey.shade200,

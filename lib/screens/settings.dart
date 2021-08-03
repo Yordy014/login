@@ -111,7 +111,7 @@ class _SettingsState extends State<Settings> {
                           .setPassword = '';
                       Provider.of<ServicesApi>(context, listen: false)
                           .setEmail = '';
-                      PreferenciasUsuario().datosUsuario = 'no logueado';
+                      PreferenciasUsuario().removerUsuario();
                       return Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => LogIn()));
                     },

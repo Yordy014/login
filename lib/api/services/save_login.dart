@@ -23,4 +23,8 @@ class PreferenciasUsuario {
   set datosUsuario(String value) {
     this._prefs.setString('datosUsuario', value);
   }
+
+  void removerUsuario() {
+    this._prefs.remove('datosUsuario');
+  }
 }

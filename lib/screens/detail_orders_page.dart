@@ -152,7 +152,7 @@ class _Header extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(width: 30),
+        SizedBox(width: 10),
         Container(
           child: Text(
             '\$${detail[i].subTotal}.00',
