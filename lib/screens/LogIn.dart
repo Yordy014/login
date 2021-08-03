@@ -199,6 +199,20 @@ class _LogInState extends State<LogIn> {
                                 duration: Duration(seconds: 5),
                               ));
                             }
+                            if (res == 'no_server') {
+                              flag.flag = false;
+
+                              return ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                backgroundColor: Color(0xffFFD9A1),
+                                content: Text(
+                                  'Server en mantenimiento, intente más tarde.',
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.center,
+                                ),
+                                duration: Duration(seconds: 5),
+                              ));
+                            }
                           },
                           // },
                           child: Text(

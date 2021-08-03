@@ -103,6 +103,7 @@ class ServicesApi with ChangeNotifier {
           },
           body: jsonEncode(data));
       final res = req.body;
+      print(req.statusCode);
       if (req.statusCode == 200) {
         final bur = await jsonDecode(res);
         if (bur['ok'] == true) {
@@ -122,6 +123,9 @@ class ServicesApi with ChangeNotifier {
       }
       if (req.statusCode == 404) {
         return 'no_net';
+      }
+      if (req.statusCode == 503) {
+        return 'no_server';
       }
 
       tapon = false;
